@@ -1,0 +1,6 @@
+framework module ZJMKit {
+  umbrella header "ZJMKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
