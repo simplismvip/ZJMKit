@@ -12,18 +12,26 @@ extension UIFont {
         return UIFont(name: "PingFangSC-Medium", size: 23)!
     }
     
-    open class func regular(_ size:CGFloat) -> UIFont? {
+    open class func jm_regular(_ size:CGFloat) -> UIFont? {
         return UIFont(name: "PingFangSC-Regular", size: size)
     }
     
-    open class func medium(_ size:CGFloat) -> UIFont? {
+    open class func jm_medium(_ size:CGFloat) -> UIFont? {
         return UIFont(name: "PingFangSC-Medium", size: size)
     }
     
-    open class func Bold(_ size:CGFloat) -> UIFont? {
+    open class func jm_Bold(_ size:CGFloat) -> UIFont? {
         return UIFont(name: "Helvetica-Bold", size: size)
     }
     
+}
+
+extension Int {
+    public static func jm_random(from: Int, to: Int) -> Int {
+        guard from < to else { fatalError("`from` MUST be less than `to`") }
+        let delta = UInt32(to + 1 - from)
+        return from + Int(arc4random_uniform(delta))
+    }
 }
 
 extension CGRect {
@@ -33,7 +41,7 @@ extension CGRect {
 }
 
 extension Array {
-    public mutating func removeObject<T:Equatable>(_ model:T, inArray:inout [T]) {
+    public mutating func jm_removeObject<T:Equatable>(_ model:T, inArray:inout [T]) {
         var findIndex:Int?
         for (index,item) in inArray.enumerated() {
             if item == model {
@@ -47,7 +55,7 @@ extension Array {
         }
     }
     
-    public mutating func deleteObject<T:Equatable>(_ model:T, inArray:inout [T]) {
+    public mutating func jm_deleteObject<T:Equatable>(_ model:T, inArray:inout [T]) {
         var findIndex:Int?
         for (index,item) in inArray.enumerated() {
             if item == model {
@@ -63,7 +71,7 @@ extension Array {
 }
 
 extension Int {
-    public var jmCurrentTime:String {
+    public var jm_currentTime:String {
         if self > 3600 {
             return "\(self/3600)时\(self/60%60)分\(self%60)秒"
         }

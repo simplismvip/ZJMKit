@@ -7,7 +7,7 @@
 
 import UIKit
 
-class JMUserDefault {
+open class JMUserDefault {
     open class func readUrlByKey(_ key:String) -> URL? {
         if let url = UserDefaults.standard.url(forKey: key) {
             return url;

@@ -28,7 +28,6 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/simplismvip/ZJMKit.git', :tag => s.version.to_s }
   s.social_media_url = 'http://www.restcy.com'
 
-  s.ios.deployment_target = '8.0'
   s.swift_version = '4.0'
   s.platform      = :ios, '8.0'
   s.source_files = [ 'ZJMKit/*.{h,swift}' ]

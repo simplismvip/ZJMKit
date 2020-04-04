@@ -7,7 +7,7 @@
 
 import UIKit
 
-class JMTools {
+open class JMTools { 
     /// 获取document路径
     open class func jmDocuPath() ->String? {
         let documentDir = FileManager.SearchPathDirectory.documentDirectory

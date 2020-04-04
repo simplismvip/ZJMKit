@@ -10,7 +10,7 @@ import UIKit
 private let kEventBlockKey = "kEventBlockKey"
 private let kNeedNextResponderKey = "kNeedNextResponderKey"
 extension UIResponder {
-    typealias EventBlock = (_ info:AnyObject?)->Void
+    public typealias EventBlock = (_ info:AnyObject?)->Void
     private struct storeKeys {
         static var eventStrategy = [String:AnyObject]()
     }
@@ -30,7 +30,7 @@ extension UIResponder {
     }
     
     /// 向 父视图/父控制器 发送消息
-    func jmRouterEvent(eventName:String, info:AnyObject?) {
+    open func jmRouterEvent(eventName:String, info:AnyObject?) {
         if let blockDic = eventStrategy[eventName] {
             if let block = blockDic[kEventBlockKey] as? EventBlock {
                 block(info)
@@ -46,7 +46,7 @@ extension UIResponder {
     }
     
     /// 向 父视图/父控制器 注册消息
-    func jmRegisterEvent(eventName:String,block:@escaping EventBlock,next:Bool) {
+    open func jmRegisterEvent(eventName:String,block:@escaping EventBlock,next:Bool) {
         eventStrategy[eventName] = [kEventBlockKey:block,kNeedNextResponderKey:next] as AnyObject
     }
 }

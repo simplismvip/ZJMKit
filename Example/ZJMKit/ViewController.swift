@@ -7,12 +7,13 @@
 //
 
 import UIKit
-
+import ZJMKit
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        view.backgroundColor = UIColor.jmRandColor
+        
     }
 
     override func didReceiveMemoryWarning() {

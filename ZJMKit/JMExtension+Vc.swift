@@ -7,8 +7,66 @@
 
 import Foundation
 extension UIViewController {
+    
+    public typealias jmCallBlock = (AnyObject?)->Void
+    private struct storeKeys {
+        static var event_key = "storeKeys.left"
+        static var right_event_key = "storeKeys.right"
+    }
+    // 添加计算属性，用来绑定 AssociatedKeys
+    private var eventBlock:jmCallBlock? {
+        get {
+            if let block = objc_getAssociatedObject(self, &storeKeys.event_key) as? jmCallBlock {
+                return block
+            }
+            return nil
+        }
+        set(newValue){
+            objc_setAssociatedObject(self, &storeKeys.right_event_key, newValue, .OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+    
+    // 添加计算属性，用来绑定 AssociatedKeys
+    private var rightEventBlock:jmCallBlock? {
+        get {
+            if let block = objc_getAssociatedObject(self, &storeKeys.right_event_key) as? jmCallBlock {
+                return block
+            }
+            return nil
+        }
+        set(newValue){
+            objc_setAssociatedObject(self, &storeKeys.event_key, newValue, .OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+    
+    open func jm_BarButtonItem(left:Bool = true,title:String?,image:UIImage?,action:@escaping jmCallBlock) {
+        if left {
+            rightEventBlock = action
+            if let image = image {
+                navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(jm_leftAction))
+            }else {
+                navigationItem.leftBarButtonItem = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(jm_leftAction))
+            }
+        }else {
+            eventBlock = action
+            if let image = image {
+                navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(jm_rightAction))
+            }else {
+                navigationItem.rightBarButtonItem = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(jm_rightAction))
+            }
+        }
+    }
+    
+    @objc func jm_rightAction(){
+        rightEventBlock?("right" as AnyObject)
+    }
+    
+    @objc func jm_leftAction(){
+        eventBlock?("left" as AnyObject)
+    }
+    
     /// 弹窗，带输入
-    public func jm_showAlert(_ title:String?, _ msg:String?, _ placeHolder:String, handler:((_ toast:String?)->())?) {
+    open func jm_showAlert(_ title:String?, _ msg:String?, _ placeHolder:String, handler:((_ toast:String?)->())?) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
         let sureAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) { (action) in
             if let text = alert.textFields?.first?.text {
@@ -31,7 +89,7 @@ extension UIViewController {
     }
     
     /// 弹窗，不带输入
-    public func jm_showAlert(_ title:String?, _ msg:String?, _ showCancle:Bool, _ handler:((_ toast:String?)->())?) {
+    open func jm_showAlert(_ title:String?, _ msg:String?, _ showCancle:Bool, _ handler:((_ toast:String?)->())?) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
         let sureAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) { (action) in
             if let handle = handler { handle(nil) }
@@ -45,7 +103,7 @@ extension UIViewController {
     }
     
     /// 分享弹窗
-    public func jm_shareImageToFriends(shareID:String?,image:UIImage?,completionHandler:@escaping (_ activityType:UIActivity.ActivityType?, _ completed:Bool?)->()) {
+    open func jm_shareImageToFriends(shareID:String?,image:UIImage?,completionHandler:@escaping (_ activityType:UIActivity.ActivityType?, _ completed:Bool?)->()) {
         var items = [Any]()
         if let appname = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String {
             items.append("#\(appname)#")

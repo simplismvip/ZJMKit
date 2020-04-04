@@ -7,8 +7,7 @@
 
 import UIKit
 
-class JMFileTools {
-    
+open class JMFileTools {
     /// 根据后缀获取文件
     open class func jmGetFileFromDir(_ dir:String,_ subffix:String) -> Array<String> {
         var nameArr = [String]()
