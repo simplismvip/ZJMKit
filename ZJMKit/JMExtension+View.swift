@@ -9,9 +9,7 @@ import UIKit
 
 extension UIView {
     open var jm_x:CGFloat {
-        get {
-            return self.frame.origin.x
-        }
+        get { return self.frame.origin.x }
         set (newX) {
             var frame = self.frame
             frame.origin.x = newX
@@ -20,9 +18,7 @@ extension UIView {
     }
     
     open var jm_y:CGFloat {
-        get {
-            return self.frame.origin.y;
-        }
+        get { return self.frame.origin.y; }
         set (newY) {
             var frame = self.frame
             frame.origin.y = newY
@@ -31,9 +27,7 @@ extension UIView {
     };
     
     open var jm_width:CGFloat {
-        get {
-            return self.frame.size.width;
-        }
+        get { return self.frame.size.width; }
         set (newWidth) {
             var frame = self.frame
             frame.size.width = newWidth
@@ -43,9 +37,7 @@ extension UIView {
     };
     
     open var jm_height:CGFloat {
-        get {
-            return self.frame.size.height;
-        }
+        get { return self.frame.size.height; }
         set (newHeight) {
             var frame = self.frame
             frame.size.height = newHeight
@@ -54,9 +46,7 @@ extension UIView {
     };
     
     open var jm_size:CGSize {
-        get {
-            return self.frame.size;
-        }
+        get { return self.frame.size; }
         set (newSize) {
             var frame = self.frame
             frame.size = newSize
@@ -65,9 +55,7 @@ extension UIView {
     };
     
     open var jm_origin:CGPoint {
-        get {
-            return self.frame.origin;
-        }
+        get { return self.frame.origin; }
         set (newOrigin) {
             var frame = self.frame
             frame.origin = newOrigin
@@ -76,9 +64,7 @@ extension UIView {
     };
     
     open var jm_centerX:CGFloat {
-        get {
-            return self.center.x;
-        }
+        get { return self.center.x; }
         set (newCenterX) {
             var center = self.center
             center.x = newCenterX
@@ -87,9 +73,7 @@ extension UIView {
     };
     
     open var jm_centerY:CGFloat {
-        get {
-            return self.center.y;
-        }
+        get { return self.center.y; }
         set (newCenterY) {
             var center = self.center
             center.y = newCenterY
@@ -98,9 +82,7 @@ extension UIView {
     };
     
     open var jm_maxX:CGFloat {
-        get {
-            return self.jm_x+self.jm_width;
-        }
+        get { return self.jm_x+self.jm_width; }
         set (newMaxX) {
             var temp = self.frame
             temp.origin.x = newMaxX-self.jm_width
@@ -109,9 +91,7 @@ extension UIView {
     };
     
     open var maxY:CGFloat {
-        get {
-            return self.jm_y+self.jm_height;
-        }
+        get { return self.jm_y+self.jm_height; }
         set (newMaxY) {
             var temp = self.frame
             temp.origin.x = newMaxY-self.jm_height
@@ -139,7 +119,6 @@ extension UIView {
         UIGraphicsEndImageContext()
         return nImage
     }
-    
     
     // [.topLeft, .topRight]
     /// 切圆角，可自定义切哪个角

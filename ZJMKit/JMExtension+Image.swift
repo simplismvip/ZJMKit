@@ -14,9 +14,7 @@ public enum GradientStyle {
 }
 
 extension UIImage {
-    open var origin:UIImage {
-        return self.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-    }
+    open var origin:UIImage { return withRenderingMode(.alwaysOriginal) }
     
     open var resizable:UIImage {
         let w = size.width * 0.5
@@ -75,8 +73,6 @@ extension UIImage {
                 }
             }
         }
-        
         return nil
     }
-    
 }

@@ -13,30 +13,17 @@ extension UIViewController {
         static var event_key = "storeKeys.left"
         static var right_event_key = "storeKeys.right"
     }
+    
     // 添加计算属性，用来绑定 AssociatedKeys
     private var eventBlock:jmCallBlock? {
-        get {
-            if let block = objc_getAssociatedObject(self, &storeKeys.event_key) as? jmCallBlock {
-                return block
-            }
-            return nil
-        }
-        set(newValue){
-            objc_setAssociatedObject(self, &storeKeys.right_event_key, newValue, .OBJC_ASSOCIATION_RETAIN)
-        }
+        get { return objc_getAssociatedObject(self, &storeKeys.event_key) as? jmCallBlock }
+        set { objc_setAssociatedObject(self, &storeKeys.right_event_key, newValue, .OBJC_ASSOCIATION_RETAIN) }
     }
     
     // 添加计算属性，用来绑定 AssociatedKeys
     private var rightEventBlock:jmCallBlock? {
-        get {
-            if let block = objc_getAssociatedObject(self, &storeKeys.right_event_key) as? jmCallBlock {
-                return block
-            }
-            return nil
-        }
-        set(newValue){
-            objc_setAssociatedObject(self, &storeKeys.event_key, newValue, .OBJC_ASSOCIATION_RETAIN)
-        }
+        get { return objc_getAssociatedObject(self, &storeKeys.right_event_key) as? jmCallBlock }
+        set { objc_setAssociatedObject(self, &storeKeys.event_key, newValue, .OBJC_ASSOCIATION_RETAIN) }
     }
     
     open func jm_BarButtonItem(left:Bool = true,title:String?,image:UIImage?,action:@escaping jmCallBlock) {
