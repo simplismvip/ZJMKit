@@ -171,13 +171,16 @@ extension UIView {
     }
     
     override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if !isKind(of: UIControl.self) {
-            let touch = touches.randomElement()
-            if let point = touch?.location(in: self), bounds.contains(point) {
-                if let inView = touch?.view?.isEqual(self), inView {
-                    runBlock(Key: &jm_eventStore.event_click)
+        if objc_getAssociatedObject(self, &jm_eventStore.event_click) != nil {
+            if !isKind(of: UIControl.self) {
+                let touch = touches.randomElement()
+                if let point = touch?.location(in: self), bounds.contains(point) {
+                    if let inView = touch?.view?.isEqual(self), inView {
+                        runBlock(Key: &jm_eventStore.event_click)
+                    }
                 }
             }
         }
+        super.touchesEnded(touches, with: event)
     }
 }

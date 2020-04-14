@@ -7,7 +7,11 @@
 
 import UIKit
 
-open class JMTools { 
+open class JMTools {
+    open class func jmDescpath()-> URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    }
+    
     /// 获取document路径
     open class func jmDocuPath() ->String? {
         let documentDir = FileManager.SearchPathDirectory.documentDirectory
