@@ -128,28 +128,4 @@ extension UIView {
         shaper.path = path.cgPath
         layer.mask = shaper
     }
-    
-    /// 获取当前展示的Controller
-    open func jmFristShowView() -> UIView? {
-        guard let window = UIApplication.shared.delegate?.window else { return nil }
-        guard var topVC = window?.rootViewController else { return nil }
-        while true {
-            if let newVc = topVC.presentedViewController {
-                topVC = newVc
-            }else if topVC.isKind(of: UINavigationController.self) {
-                let navVC = topVC as! UINavigationController
-                if let topNavVC = navVC.topViewController {
-                    topVC = topNavVC
-                }
-            }else if topVC.isKind(of: UITabBarController.self) {
-                let tabVC = topVC as! UITabBarController
-                if let selTabVC = tabVC.selectedViewController {
-                    topVC = selTabVC
-                }
-            }else{
-                break
-            }
-        }
-        return topVC.view
-    }
 }

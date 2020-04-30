@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol JMOpenEmailProtocol { }
+public protocol JMOpenEmailProtocol { }
 extension JMOpenEmailProtocol {
-    func jm_openEmail(_ them:String, _ toEmail:String, _ ccEmail:String?, _ content:String) {
+    public func jm_openEmail(_ them:String, _ toEmail:String, _ ccEmail:String?, _ content:String) {
         let mailUrl = NSMutableString()
         // 添加收件人
         mailUrl.appendFormat("mailto:%@,", toEmail)

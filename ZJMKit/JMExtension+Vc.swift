@@ -6,8 +6,8 @@
 //
 
 import Foundation
+
 extension UIViewController {
-    
     public typealias jmCallBlock = (AnyObject?)->Void
     private struct storeKeys {
         static var event_key = "storeKeys.left"

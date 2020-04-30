@@ -13,7 +13,7 @@ extension UIButton {
         objc_setAssociatedObject(self, &jm_eventStore.event_button_action, nil, .OBJC_ASSOCIATION_RETAIN)
     }
     
-    open func jm_addAction(event:UIControl.Event,action:@escaping (UIButton)->Void) {
+    open func jm_addAction(event:UIControl.Event = .touchUpInside,action:@escaping (UIButton)->Void) {
         objc_setAssociatedObject(self, &jm_eventStore.event_button_action, action, .OBJC_ASSOCIATION_RETAIN)
         addTarget(self, action: #selector(targetAction(_:)), for: event)
     }

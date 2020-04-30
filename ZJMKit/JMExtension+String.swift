@@ -16,8 +16,12 @@ extension String {
     }
     
     /// 获取字符串size
-    public func jm_sizeWithFont(_ font:UIFont,_ maxW:CGFloat) -> CGSize {
-        let attrsDic:[NSAttributedString.Key:Any] = [NSAttributedString.Key.font:font]
+    public func jm_sizeWithFont(_ font:UIFont,_ maxW:CGFloat,_ space:CGFloat = 4, wordSpace:CGFloat = 4) -> CGSize {
+        let paraStyle = NSMutableParagraphStyle()
+        paraStyle.lineBreakMode = .byCharWrapping;
+        paraStyle.lineSpacing = space; //设置行间距
+        
+        let attrsDic = [.font:font, .paragraphStyle:paraStyle,.kern:wordSpace] as [NSAttributedString.Key : Any]
         let maxSize = CGSize(width: maxW, height: CGFloat(MAXFLOAT))
         return self.boundingRect(with: maxSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attrsDic, context: nil).size
     }
@@ -66,7 +70,17 @@ extension String {
         paraStyle.paragraphSpacingBefore = 0.0; //段落缩进
         paraStyle.headIndent = 0;
         paraStyle.tailIndent = 0;
-        let dicInfo = [.font:font, .paragraphStyle:paraStyle, .kern:1.5,] as [NSAttributedString.Key : Any]
+        let dicInfo = [.font:font, .paragraphStyle:paraStyle, .kern:5,] as [NSAttributedString.Key : Any]
+        return NSMutableAttributedString(string: self, attributes: dicInfo)
+    }
+    
+    /// 调整字符串间距
+    public func jm_attriSpaces(_ font:UIFont, alignment:NSTextAlignment = .left, space:CGFloat = 4,wordSpace:CGFloat = 4) -> NSMutableAttributedString {
+        let paraStyle = NSMutableParagraphStyle()
+        paraStyle.lineBreakMode = .byCharWrapping;
+        paraStyle.alignment = alignment;
+        paraStyle.lineSpacing = space; //设置行间距
+        let dicInfo = [.font:font, .paragraphStyle:paraStyle,.kern:wordSpace] as [NSAttributedString.Key : Any]
         return NSMutableAttributedString(string: self, attributes: dicInfo)
     }
 }

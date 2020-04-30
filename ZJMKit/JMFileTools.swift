@@ -126,4 +126,77 @@ open class JMFileTools {
         }
         return str
     }
+    
+    // MARK:Plist用例
+    ///创建plist 用法  let myDic=NSMutableDictionary() myDic.setValue("value", forKey: "key1")  CommonFunction.CreatePlistFile("test").SetPlistFileValue("test", Key: "key", Dictionary: myDic )
+    class func CreatePlistFile(_ plistname:String ) {
+        let path: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + (plistname+".plist") //获取到plist文件路径
+        //不存在plist文件就创建
+        if FileManager.default.fileExists(atPath: path) == false {
+            let fileManager: FileManager = FileManager.default
+            //创建plist
+            fileManager.createFile(atPath: path, contents: nil, attributes: nil)
+            let Dictionary = NSMutableDictionary()
+            Dictionary.write(toFile: path, atomically: true)  //写入
+        }
+    }
+    ///写入plist值 ：注：Key不可重复 重复不添加
+    func SetPlistFileValue(_ plistname:String,Key:String,Dictionary:NSMutableDictionary) {
+        let path: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + (plistname+".plist")
+        let  dataDictionary = NSMutableDictionary(contentsOfFile: path)
+        if(dataDictionary?.object(forKey: Key) != nil){
+            return
+        }else{
+            //添加数据
+            dataDictionary?.setValue(Dictionary, forKey: Key)
+        }
+        //重新写入到plist
+        dataDictionary?.write(toFile: path, atomically: true)
+    }
+    ///获取plist所有对象 返回 NSMutableDictionary
+    func GetAllPlistFileValue(_ plistname:String)->NSMutableDictionary {
+        let path: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + (plistname+".plist")
+        //读取plist文件的内容
+        let  dataDictionary = NSMutableDictionary(contentsOfFile: path)
+        
+        return dataDictionary!
+    }
+    ///获取plist的Key对象 返回 NSDictionary
+    func GetKeyPlistFileValue(_ plistname:String,Key:String)->NSDictionary {
+        let path: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + (plistname+".plist")
+        
+        //获取到plist文件路径
+        var dic:NSDictionary?
+        
+        //读取plist文件的内容
+        let  dataDictionary = NSMutableDictionary(contentsOfFile: path)
+        if((dataDictionary?.allKeys.count)!>0){
+            dic=(dataDictionary?.object(forKey: Key))! as? NSDictionary
+        }
+        return dic!
+    }
+    ///删除plist的所有对象
+    func DelAllPlistValue(_ plistname:String)->NSMutableDictionary{
+        let path: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + (plistname+".plist") 
+        let  dataDictionary = NSMutableDictionary(contentsOfFile: path)
+        if((dataDictionary?.allKeys.count)!>0){
+            dataDictionary?.removeAllObjects()  //全部删除
+            //重新写入到plist
+            dataDictionary?.write(toFile: path, atomically: true)
+        }
+        return dataDictionary!
+    }
+    ///删除plist的Key对象
+    func DelKeyPlistValue(_ plistname:String,Key:String)->NSMutableDictionary{
+        let path: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + (plistname+".plist")
+        let  dataDictionary = NSMutableDictionary(contentsOfFile: path)
+        if((dataDictionary?.allKeys.count)!>0){
+            dataDictionary?.removeObject(forKey: Key) //删除
+            //重新写入到plist
+            dataDictionary?.write(toFile: path, atomically: true)
+        }
+        return dataDictionary!
+        
+    }
+    
 }

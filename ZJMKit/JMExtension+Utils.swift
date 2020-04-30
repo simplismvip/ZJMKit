@@ -16,6 +16,10 @@ extension UIFont {
         return UIFont(name: "PingFangSC-Regular", size: size)
     }
     
+    open class func jm_Avenir(_ size:CGFloat) -> UIFont? {
+        return UIFont(name: "Avenir-Light", size: size)
+    }
+    
     open class func jm_medium(_ size:CGFloat) -> UIFont? {
         return UIFont(name: "PingFangSC-Medium", size: size)
     }

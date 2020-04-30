@@ -23,6 +23,42 @@ extension UIImage {
         return resizableImage(withCapInsets: edge,resizingMode: .stretch)
     }
     
+    open func compressImage(maxLength: CGFloat) ->Data? {
+        var compression:CGFloat = 1
+        var data = UIImageJPEGRepresentation(self, compression)
+        if let count = data?.count, CGFloat(count) < maxLength { return data }
+        var max:CGFloat = 1
+        var min:CGFloat = 0
+        for _ in 0..<6 {
+            compression = (max+min)/2
+            data = UIImageJPEGRepresentation(self, compression)
+            if let count = data?.count, CGFloat(count) < maxLength * 0.9 {
+                min = compression
+            }else if let count = data?.count, CGFloat(count) > maxLength {
+                max = compression
+            }else {
+                break
+            }
+        }
+        guard var newdata = data else { return nil }
+        if CGFloat(newdata.count) < maxLength { return newdata }
+        guard let resultImage = UIImage(data: newdata) else { return nil }
+        
+        var lastDataLength:Int = 0
+        while newdata.count > Int(maxLength) && newdata.count != lastDataLength {
+            lastDataLength = newdata.count
+            let ratio = CGFloat(maxLength) / CGFloat(newdata.count)
+            let size = CGSize(width: (resultImage.size.width * sqrt(ratio)), height: resultImage.size.height * sqrt(ratio))
+            UIGraphicsBeginImageContext(size)
+            resultImage.draw(in: CGRect.Rect(0, 0, size.width, size.height))
+            guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return nil}
+            UIGraphicsEndImageContext()
+            guard let new1data = UIImageJPEGRepresentation(image, compression) else { return nil}
+            newdata = new1data
+        }
+        return newdata
+    }
+    
     open class func jmGradientImage(_ gradientStyle:GradientStyle,_ colors:Array<UIColor>,_ frame:CGRect) -> UIImage? {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = frame
@@ -75,4 +111,47 @@ extension UIImage {
         }
         return nil
     }
+    
+    /**
+     生成二维码
+     - parameter qrString:    字符串
+     - parameter qrImageName: 图片
+     */
+    open class func createQRCode(_ qrString: String?, qrImageName: String?) -> UIImage?{
+        if let sureQRString = qrString {
+            let stringData = sureQRString.data(using: String.Encoding.utf8, allowLossyConversion: false)
+            // 创建一个二维码的滤镜
+            let qrFilter = CIFilter(name: "CIQRCodeGenerator")
+            qrFilter!.setValue(stringData, forKey: "inputMessage")
+            qrFilter!.setValue("H", forKey: "inputCorrectionLevel")
+            let qrCIImage = qrFilter!.outputImage
+            // 创建一个颜色滤镜,黑白色
+            let colorFilter = CIFilter(name: "CIFalseColor")
+            colorFilter!.setDefaults()
+            colorFilter!.setValue(qrCIImage, forKey: "inputImage")
+            colorFilter!.setValue(CIColor(red: 0, green: 0, blue: 0), forKey: "inputColor0")
+            colorFilter!.setValue(CIColor(red: 1, green: 1, blue: 1), forKey: "inputColor1")
+            // 返回二维码image
+            let codeImage = UIImage(ciImage: colorFilter!.outputImage!.transformed(by: CGAffineTransform(scaleX: 5, y: 5)))
+            // 通常,二维码都是定制的,中间都会放想要表达意思的图片
+            if let iconImage = UIImage(named: qrImageName!) {
+                let rect = CGRect(x: 0, y: 0, width: codeImage.size.width, height: codeImage.size.height)
+                UIGraphicsBeginImageContext(rect.size)
+                codeImage.draw(in: rect)
+                let avatarSize = CGSize(width: rect.size.width * 0.25, height: rect.size.height * 0.25)
+                let x = (rect.width - avatarSize.width) * 0.5
+                let y = (rect.height - avatarSize.height) * 0.5
+                iconImage.draw(in: CGRect(x: x, y: y, width: avatarSize.width, height: avatarSize.height))
+                let resultImage = UIGraphicsGetImageFromCurrentImageContext()
+                
+                UIGraphicsEndImageContext()
+                return resultImage
+            }
+            return codeImage
+        }
+        return nil
+    }
+    
+    
+
 }
