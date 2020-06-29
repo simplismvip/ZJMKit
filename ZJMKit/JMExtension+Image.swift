@@ -23,7 +23,7 @@ extension UIImage {
         return resizableImage(withCapInsets: edge,resizingMode: .stretch)
     }
     
-    open func compressImage(maxLength: CGFloat) ->Data? {
+    open func jmCompressImage(maxLength: CGFloat) ->Data? {
         var compression:CGFloat = 1
         var data = UIImageJPEGRepresentation(self, compression)
         if let count = data?.count, CGFloat(count) < maxLength { return data }
@@ -117,7 +117,7 @@ extension UIImage {
      - parameter qrString:    字符串
      - parameter qrImageName: 图片
      */
-    open class func createQRCode(_ qrString: String?, qrImageName: String?) -> UIImage?{
+    open class func jmCreateQRCode(_ qrString: String?, qrImageName: String?) -> UIImage?{
         if let sureQRString = qrString {
             let stringData = sureQRString.data(using: String.Encoding.utf8, allowLossyConversion: false)
             // 创建一个二维码的滤镜

@@ -35,7 +35,7 @@ extension UIColor {
     }
     
     /// 随机颜色
-    open func component(_ alpha:CGFloat ) ->UIColor {
+    open func jmComponent(_ alpha:CGFloat ) ->UIColor {
         return withAlphaComponent(alpha)
     }
     
