@@ -8,6 +8,7 @@
 
 import UIKit
 import ZJMKit
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -16,6 +17,10 @@ class ViewController: UIViewController {
         
     }
 
+    @IBAction func show(_ sender: Any) {
+        JMTextToast.share.jmShowString(text: "哈哈，我是一个☝️弹窗", seconds: 5)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
