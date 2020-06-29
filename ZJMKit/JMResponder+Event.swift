@@ -11,9 +11,7 @@ private let kEventBlockKey = "kEventBlockKey"
 private let kNeedNextResponderKey = "kNeedNextResponderKey"
 extension UIResponder {
     public typealias EventBlock = (_ info:AnyObject?)->Void
-    private struct storeKeys {
-        static var eventStrategy = [String:AnyObject]()
-    }
+    private struct storeKeys { static var eventStrategy = [String:AnyObject]() }
     // 添加计算属性，用来绑定 AssociatedKeys
     private var eventStrategy:Dictionary<String,AnyObject> {
         get {
@@ -24,9 +22,7 @@ extension UIResponder {
                 return self.eventStrategy
             }
         }
-        set(newValue){
-            objc_setAssociatedObject(self, &storeKeys.eventStrategy, newValue, .OBJC_ASSOCIATION_RETAIN)
-        }
+        set(newValue) { objc_setAssociatedObject(self, &storeKeys.eventStrategy, newValue, .OBJC_ASSOCIATION_RETAIN) }
     }
     
     /// 向 父视图/父控制器 发送消息
