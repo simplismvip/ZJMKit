@@ -100,8 +100,10 @@ extension UIView {
     };
 }
 
+// MARK： -- 常用方法 -- 
 extension UIView {
-    open func jmCcreenCapture() -> UIImage? {
+    /// View截图
+    open func jmScreenCapture() -> UIImage? {
         let scale = UIScreen.main.scale
         let width = bounds.size.width*scale
         let height = bounds.size.height*scale
@@ -127,5 +129,30 @@ extension UIView {
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: 20, height: 20))
         shaper.path = path.cgPath
         layer.mask = shaper
+    }
+    
+    /// 添加阴影，暂时支撑top和bottom
+    open func jmAddShadow(_ color: UIColor, posion:JMPosition = .top, radius:CGFloat = 5, opacity:Float = 0.3) {
+        layer.shadowColor = color.cgColor
+        layer.shadowOffset = CGSize.zero
+        layer.shadowOpacity = opacity
+        layer.shadowRadius = radius
+        
+        let width = bounds.size.width
+        let height = bounds.size.height
+
+        var shadowRect:CGRect
+        switch posion {
+        case .top:
+            shadowRect = CGRect(x: 0, y: 0, width: width, height: 2)
+        case .bottom:
+            shadowRect = CGRect(x: 0, y: height-radius/2, width: width, height: 1)
+        case .left:
+            shadowRect = CGRect(x: 0, y: height, width: 1, height: height)
+        case .right:
+            shadowRect = CGRect(x: width-radius, y: height, width: 1, height: height)
+        }
+        let path = UIBezierPath(rect: shadowRect)
+        layer.shadowPath = path.cgPath
     }
 }

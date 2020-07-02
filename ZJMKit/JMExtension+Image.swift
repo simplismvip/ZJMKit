@@ -23,6 +23,7 @@ extension UIImage {
         return resizableImage(withCapInsets: edge,resizingMode: .stretch)
     }
     
+    /// 压缩图片
     open func jmCompressImage(maxLength: CGFloat) ->Data? {
         var compression:CGFloat = 1
         var data = UIImageJPEGRepresentation(self, compression)
@@ -59,6 +60,7 @@ extension UIImage {
         return newdata
     }
     
+    /// 生成渐变色图片
     open class func jmGradientImage(_ gradientStyle:GradientStyle,_ colors:Array<UIColor>,_ frame:CGRect) -> UIImage? {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = frame

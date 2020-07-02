@@ -9,10 +9,12 @@ import UIKit
 
 // MARK: -- 为UIButton添加便利方法 ---
 extension UIButton {
+    /// 移除block
     open func jm_removeAction() {
         objc_setAssociatedObject(self, &jm_eventStore.event_button_action, nil, .OBJC_ASSOCIATION_RETAIN)
     }
     
+    /// 按钮添加block响应
     open func jm_addAction(event:UIControl.Event = .touchUpInside,action:@escaping (UIButton)->Void) {
         objc_setAssociatedObject(self, &jm_eventStore.event_button_action, action, .OBJC_ASSOCIATION_RETAIN)
         addTarget(self, action: #selector(targetAction(_:)), for: event)

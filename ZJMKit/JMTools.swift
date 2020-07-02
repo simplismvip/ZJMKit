@@ -113,4 +113,22 @@ open class JMTools {
         }
         return topVC
     }
+    
+    /// 取出某个对象的地址
+    open class func jmGetAnyObjectMemoryAddress(object: AnyObject) -> String {
+        let str = Unmanaged<AnyObject>.passUnretained(object).toOpaque()
+        return String(describing: str)
+    }
+    
+    /// 对比两个对象的地址是否相同
+    open class func jmEquateable(object1: AnyObject, object2: AnyObject) -> Bool {
+        let str1 = jmGetAnyObjectMemoryAddress(object: object1)
+        let str2 = jmGetAnyObjectMemoryAddress(object: object2)
+        
+        if str1 == str2 {
+            return true
+        } else {
+            return false
+        }
+    }
 }

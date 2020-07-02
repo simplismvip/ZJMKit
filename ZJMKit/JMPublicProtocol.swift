@@ -7,8 +7,17 @@
 
 import Foundation
 
+/// 常用位置枚举，
+public enum JMPosition {
+    case top          //图片在上，文字在下，垂直居中对齐
+    case bottom       //图片在下，文字在上，垂直居中对齐
+    case left         //图片在左，文字在右，水平居中对齐
+    case right        //图片在右，文字在左，水平居中对齐
+}
+
 public protocol JMOpenEmailProtocol { }
 extension JMOpenEmailProtocol {
+    /// 打开系统邮箱协议
     public func jm_openEmail(_ them:String, _ toEmail:String, _ ccEmail:String?, _ content:String) {
         let mailUrl = NSMutableString()
         // 添加收件人

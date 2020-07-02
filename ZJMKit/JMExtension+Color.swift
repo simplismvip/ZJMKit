@@ -34,12 +34,12 @@ extension UIColor {
         return jmRGB(R,G,B)
     }
     
-    /// 随机颜色
+    /// 颜色透明度
     open func jmComponent(_ alpha:CGFloat ) ->UIColor {
         return withAlphaComponent(alpha)
     }
     
-    /// 随机颜色
+    /// 字符串生成颜色
     open class func jmHexColor(_ hexStr:String ) ->UIColor{
         return UIColor(hexString: hexStr)
     }
