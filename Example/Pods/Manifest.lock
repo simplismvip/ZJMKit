@@ -1,5 +1,5 @@
 PODS:
-  - ZJMKit (0.1.2)
+  - ZJMKit (0.1.5)
 
 DEPENDENCIES:
   - ZJMKit (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ZJMKit: 6b6df9edc9cc320265c22f429deb55d547cb9bae
+  ZJMKit: 8fac8fbb9fceb89fabb25238101251d5979f61d3
 
 PODFILE CHECKSUM: 0a5b0606d1355d99510ca96fb732002892414e19
 

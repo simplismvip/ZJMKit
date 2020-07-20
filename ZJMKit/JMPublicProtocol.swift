@@ -34,15 +34,10 @@ extension JMOpenEmailProtocol {
         guard let em = mailUrl.addingPercentEncoding(withAllowedCharacters: character) else { return }
         if let emailUrl = URL(string: em) {
             if #available(iOS 10.0, *) {
-                UIApplication.shared.open(emailUrl, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+                UIApplication.shared.open(emailUrl, options: [:], completionHandler: nil)
             } else {
                 // Fallback on earlier versions
             }
         }
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
