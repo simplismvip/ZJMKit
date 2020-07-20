@@ -8,6 +8,7 @@
 import UIKit
 
 open class JMTools {
+    /// 获取document路径Url
     open class func jmDescpath()-> URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
@@ -98,13 +99,13 @@ open class JMTools {
             if let newVc = topVC.presentedViewController {
                 topVC = newVc
             }else if topVC.isKind(of: UINavigationController.self) {
-                let navVC = topVC as! UINavigationController
-                if let topNavVC = navVC.topViewController {
+                let navVC = topVC as? UINavigationController
+                if let topNavVC = navVC?.topViewController {
                     topVC = topNavVC
                 }
             }else if topVC.isKind(of: UITabBarController.self) {
-                let tabVC = topVC as! UITabBarController
-                if let selTabVC = tabVC.selectedViewController {
+                let tabVC = topVC as? UITabBarController
+                if let selTabVC = tabVC?.selectedViewController {
                     topVC = selTabVC
                 }
             }else{

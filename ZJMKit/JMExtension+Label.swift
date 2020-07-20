@@ -8,7 +8,7 @@
 import UIKit
 extension UILabel {
     /// 配置字符串
-    open func jm_configLabel(alig:NSTextAlignment = .left,font:UIFont?,color:UIColor = UIColor.gray) {
+    open func jmConfigLabel(alig:NSTextAlignment = .left,font:UIFont?,color:UIColor = UIColor.gray) {
         self.numberOfLines = 0
         self.textColor = color
         self.font = font
@@ -25,7 +25,7 @@ extension UIButton {
         case right        //图片在右，文字在左，水平居中对齐
     }
     /// ⚠️⚠️⚠️使用该分类调整位置前button的frame必须有值，否则无效。在layoutsubviews中使用
-    open func jm_imagePosition(style: RGButtonImagePosition, spacing: CGFloat) {
+    open func jmImagePosition(style: RGButtonImagePosition, spacing: CGFloat) {
         //得到imageView和titleLabel的宽高
         let imageWidth = self.imageView?.frame.size.width
         let imageHeight = self.imageView?.frame.size.height

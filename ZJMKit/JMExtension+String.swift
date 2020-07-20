@@ -8,7 +8,7 @@
 import Foundation
 extension String {
     /// 中文转英文
-    public func jm_transformChinese() -> String {
+    public func jmTransformChinese() -> String {
         let mutabString = self.mutableCopy() as! CFMutableString
         CFStringTransform(mutabString, nil, kCFStringTransformMandarinLatin, false)
         CFStringTransform(mutabString, nil, kCFStringTransformStripCombiningMarks, false)
@@ -16,7 +16,7 @@ extension String {
     }
     
     /// 获取字符串size
-    public func jm_sizeWithFont(_ font:UIFont,_ maxW:CGFloat,_ space:CGFloat = 4, wordSpace:CGFloat = 4) -> CGSize {
+    public func jmSizeWithFont(_ font:UIFont,_ maxW:CGFloat,_ space:CGFloat = 4, wordSpace:CGFloat = 4) -> CGSize {
         let paraStyle = NSMutableParagraphStyle()
         paraStyle.lineBreakMode = .byCharWrapping;
         paraStyle.lineSpacing = space; //设置行间距
@@ -26,13 +26,21 @@ extension String {
         return self.boundingRect(with: maxSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attrsDic, context: nil).size
     }
     
+//    private func jmSizecache() -> NSCache<String, String>? {
+//        var sizeCache:NSCache<String, String>?
+//        DispatchQueue.once(token: "") {
+//            sizeCache = NSCache()
+//        }
+//        return sizeCache
+//    }
+    
     /// 获取字符串size
-    public func jm_sizeWithFont(_ font:UIFont) -> CGSize {
-        return jm_sizeWithFont(font, CGFloat(MAXFLOAT))
+    public func jmSizeWithFont(_ font:UIFont) -> CGSize {
+        return jmSizeWithFont(font, CGFloat(MAXFLOAT))
     }
     
     /// 时间戳字符串格式化
-    public func jm_formatTspString(_ format:String = "yyyy-MM-dd HH:mm:ss") -> String? {
+    public func jmFormatTspString(_ format:String = "yyyy-MM-dd HH:mm:ss") -> String? {
         // 1578039791.520024
         if let time = Double(self) {
             let date = Date(timeIntervalSince1970: time)
@@ -44,7 +52,7 @@ extension String {
     }
     
     /// 字符串转swift类
-    public func jm_classFromString() -> UIViewController? {
+    public func jmClassFromString() -> UIViewController? {
         if let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String? {
             let className = appName + "." + self
             if let newClass = NSClassFromString(className) as? UIViewController.Type {
@@ -60,7 +68,7 @@ extension String {
     }
     
     /// 调整字符串间距
-    public func jm_attribute(_ font:UIFont, alignment:NSTextAlignment = .left, space:CGFloat = 4) -> NSMutableAttributedString {
+    public func jmAttribute(_ font:UIFont, alignment:NSTextAlignment = .left, space:CGFloat = 4) -> NSMutableAttributedString {
         let paraStyle = NSMutableParagraphStyle()
         paraStyle.lineBreakMode = .byCharWrapping;
         paraStyle.alignment = alignment;
@@ -75,7 +83,7 @@ extension String {
     }
     
     /// 调整字符串间距
-    public func jm_attriSpaces(_ font:UIFont, alignment:NSTextAlignment = .left, space:CGFloat = 4,wordSpace:CGFloat = 4) -> NSMutableAttributedString {
+    public func jmAttriSpaces(_ font:UIFont, alignment:NSTextAlignment = .left, space:CGFloat = 4,wordSpace:CGFloat = 4) -> NSMutableAttributedString {
         let paraStyle = NSMutableParagraphStyle()
         paraStyle.lineBreakMode = .byCharWrapping;
         paraStyle.alignment = alignment;

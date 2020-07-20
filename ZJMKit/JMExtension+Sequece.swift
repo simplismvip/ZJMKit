@@ -17,7 +17,7 @@ extension Array where Element:Equatable {
     }
     
     /// 移除元素
-    public mutating func jm_removeObject<T:Equatable>(_ model:T, inArray:inout [T]) {
+    public mutating func jmRemoveObject<T:Equatable>(_ model:T, inArray:inout [T]) {
         var findIndex:Int?
         for (index,item) in inArray.enumerated() {
             if item == model {
@@ -32,7 +32,7 @@ extension Array where Element:Equatable {
     }
     
     /// 删除元素
-    public mutating func jm_deleteObject<T:Equatable>(_ model:T, inArray:inout [T]) {
+    public mutating func jmReleteObject<T:Equatable>(_ model:T, inArray:inout [T]) {
         var findIndex:Int?
         for (index,item) in inArray.enumerated() {
             if item == model {
@@ -49,7 +49,7 @@ extension Array where Element:Equatable {
 
 extension Array {
     /// 查找首个符合条件元素的位置，返回索引位置
-    public func index(_ transfrom:(Element) -> Bool) -> Int?  {
+    public func jmIndex(_ transfrom:(Element) -> Bool) -> Int?  {
         var result:Int?
         for (index,x) in enumerated() where transfrom(x) {
             result = index
@@ -59,7 +59,7 @@ extension Array {
     }
     
     /// 查找序列中一组满足某个条件的元素个数，并未构建数组，比使用Filter高效
-    public func count(where predicate:(Element) ->Bool) -> Int {
+    public func jmCount(where predicate:(Element) ->Bool) -> Int {
         var result = 0
         for element in self where predicate(element) {
             result += 1
@@ -68,7 +68,7 @@ extension Array {
     }
     
     /// 类似reduce
-    public func accumulate<Result>(_ initialResult:Result, _ nextPartialResult:(Result,Element) ->Result) -> [Result] {
+    public func jmAccumulate<Result>(_ initialResult:Result, _ nextPartialResult:(Result,Element) ->Result) -> [Result] {
         var running = initialResult
         return map { (next) -> Result in
             running = nextPartialResult(running,next)
@@ -79,7 +79,7 @@ extension Array {
 
 extension Sequence where Element:Hashable {
     /// 去掉重复元素，并按照顺序返回。正常使用Set返回的元素是无序的
-    public func unique() -> [Element] {
+    public func jmUnique() -> [Element] {
         var seen:Set<Element> = []
         return filter { (element) -> Bool in
             if seen.contains(element) {
@@ -92,7 +92,7 @@ extension Sequence where Element:Hashable {
     }
     
     /// 将相同元素放到同一数组中，不保证顺序，只需要遍历一次
-    public func subSequence() -> [[Element]] {
+    public func jmSubSequence() -> [[Element]] {
         var seen:Dictionary<Element,[Element]> = [:]
         for element in self {
             if var items = seen[element] {

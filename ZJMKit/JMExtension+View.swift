@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIView {
-    open var jm_x:CGFloat {
+    open var jmX:CGFloat {
         get { return self.frame.origin.x }
         set (newX) {
             var frame = self.frame
@@ -17,7 +17,7 @@ extension UIView {
         }
     }
     
-    open var jm_y:CGFloat {
+    open var jmY:CGFloat {
         get { return self.frame.origin.y; }
         set (newY) {
             var frame = self.frame
@@ -26,7 +26,7 @@ extension UIView {
         }
     };
     
-    open var jm_width:CGFloat {
+    open var jmWidth:CGFloat {
         get { return self.frame.size.width; }
         set (newWidth) {
             var frame = self.frame
@@ -36,7 +36,7 @@ extension UIView {
         
     };
     
-    open var jm_height:CGFloat {
+    open var jmHeight:CGFloat {
         get { return self.frame.size.height; }
         set (newHeight) {
             var frame = self.frame
@@ -45,7 +45,7 @@ extension UIView {
         }
     };
     
-    open var jm_size:CGSize {
+    open var jmSize:CGSize {
         get { return self.frame.size; }
         set (newSize) {
             var frame = self.frame
@@ -54,7 +54,7 @@ extension UIView {
         }
     };
     
-    open var jm_origin:CGPoint {
+    open var jmOrigin:CGPoint {
         get { return self.frame.origin; }
         set (newOrigin) {
             var frame = self.frame
@@ -63,7 +63,7 @@ extension UIView {
         }
     };
     
-    open var jm_centerX:CGFloat {
+    open var jmCenterX:CGFloat {
         get { return self.center.x; }
         set (newCenterX) {
             var center = self.center
@@ -72,7 +72,7 @@ extension UIView {
         }
     };
     
-    open var jm_centerY:CGFloat {
+    open var jmCenterY:CGFloat {
         get { return self.center.y; }
         set (newCenterY) {
             var center = self.center
@@ -81,20 +81,20 @@ extension UIView {
         }
     };
     
-    open var jm_maxX:CGFloat {
-        get { return self.jm_x+self.jm_width; }
+    open var jmMaxX:CGFloat {
+        get { return self.jmX+self.jmWidth; }
         set (newMaxX) {
             var temp = self.frame
-            temp.origin.x = newMaxX-self.jm_width
+            temp.origin.x = newMaxX-self.jmWidth
             self.frame = temp
         }
     };
     
-    open var maxY:CGFloat {
-        get { return self.jm_y+self.jm_height; }
+    open var jmMaxY:CGFloat {
+        get { return self.jmY+self.jmHeight; }
         set (newMaxY) {
             var temp = self.frame
-            temp.origin.x = newMaxY-self.jm_height
+            temp.origin.x = newMaxY-self.jmHeight
             self.frame = temp
         }
     };

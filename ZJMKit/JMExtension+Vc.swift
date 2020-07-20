@@ -37,40 +37,40 @@ extension UIViewController {
         set { objc_setAssociatedObject(self, &storeKeys.event_key, newValue, .OBJC_ASSOCIATION_RETAIN) }
     }
     
-    open func jm_BarButtonItem(left:Bool = true,title:String?,image:UIImage?,action:@escaping jmCallBlock) {
+    open func jmBarButtonItem(left:Bool = true,title:String?,image:UIImage?,action:@escaping jmCallBlock) {
         if left {
             rightEventBlock = action
             if let image = image {
-                navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(jm_leftAction))
+                navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(jmLeftAction))
             }else {
-                navigationItem.leftBarButtonItem = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(jm_leftAction))
+                navigationItem.leftBarButtonItem = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(jmLeftAction))
             }
         }else {
             eventBlock = action
             if let image = image {
-                navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(jm_rightAction))
+                navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(jmRightAction))
             }else {
-                navigationItem.rightBarButtonItem = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(jm_rightAction))
+                navigationItem.rightBarButtonItem = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(jmRightAction))
             }
         }
     }
     
-    @objc func jm_rightAction(){
+    @objc func jmRightAction(){
         rightEventBlock?("right" as AnyObject)
     }
     
-    @objc func jm_leftAction(){
+    @objc func jmLeftAction(){
         eventBlock?("left" as AnyObject)
     }
     
     /// 弹窗，带输入
-    open func jm_showAlert(_ title:String?, _ msg:String?, _ placeHolder:String, handler:((_ toast:String?)->())?) {
+    open func jmShowAlert(_ title:String?, _ msg:String?, _ placeHolder:String, handler:((_ toast:String?)->())?) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
         let sureAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) { (action) in
             if let text = alert.textFields?.first?.text {
                 if let handle = handler { handle(text) }
             }else{
-                self.jm_showAlert("请重新输入", "输入为空", false, nil)
+                self.jmShowAlert("请重新输入", "输入为空", false, nil)
             }
         }
         alert.addTextField { textField in
@@ -87,7 +87,7 @@ extension UIViewController {
     }
     
     /// 弹窗，不带输入
-    open func jm_showAlert(_ title:String?, _ msg:String?, _ showCancle:Bool, _ handler:((_ toast:String?)->())?) {
+    open func jmShowAlert(_ title:String?, _ msg:String?, _ showCancle:Bool, _ handler:((_ toast:String?)->())?) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
         let sureAction = UIAlertAction(title: "确定", style: UIAlertAction.Style.default) { (action) in
             if let handle = handler { handle(nil) }
@@ -101,7 +101,7 @@ extension UIViewController {
     }
     
     /// 分享弹窗
-    open func jm_shareImageToFriends(shareID:String?,image:UIImage?,completionHandler:@escaping (_ activityType:UIActivity.ActivityType?, _ completed:Bool?)->()) {
+    open func jmShareImageToFriends(shareID:String?,image:UIImage?,completionHandler:@escaping (_ activityType:UIActivity.ActivityType?, _ completed:Bool?)->()) {
         var items = [Any]()
         if let appname = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String {
             items.append("#\(appname)#")

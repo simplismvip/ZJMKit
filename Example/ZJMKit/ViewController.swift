@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.jmRandColor
-        
+        jmSendMsg(msgName: "", info: nil)
     }
 
     @IBAction func show(_ sender: Any) {

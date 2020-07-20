@@ -104,7 +104,7 @@ open class JMFileTools {
     /// 返回值有转换，返回值是字符串
     open class func jmGetFilesBytesByPath(_ path:String) ->String {
         var sumSize:NSInteger = 0
-        var isDirectory: UnsafeMutablePointer<ObjCBool>?
+        let isDirectory = unsafeBitCast(false, to: UnsafeMutablePointer<ObjCBool>.self)
         if FileManager.default.fileExists(atPath: path, isDirectory: isDirectory) {
             sumSize = NSInteger(jmGetSize(path))
         }
@@ -199,4 +199,15 @@ open class JMFileTools {
         
     }
     
+    /// 获取文本字符串
+    static func jmFile(jsName:String, type:String) -> String? {
+        guard let path = Bundle.main.path(forResource: jsName, ofType: type) else { return nil }
+        return try? String(contentsOfFile: path, encoding: .utf8)
+    }
+    
+    /// 获取bundle文件路径
+    static func jmPathBundle(jsName:String, type:String) -> String? {
+        guard let path = Bundle.main.path(forResource: jsName, ofType: type) else { return nil }
+        return path
+    }
 }

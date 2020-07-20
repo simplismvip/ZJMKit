@@ -13,12 +13,12 @@ open class JMTextToast: NSObject {
     private func jmShowString(text:String,seconds:TimeInterval,onView:UIView?,offset:CGPoint) {
         func addContainerViews(containerView:UIView, backView:UIView) {
             containerView.addSubview(backView)
-            containerView.bringSubview(toFront: backView)
+            containerView.bringSubviewToFront(backView)
             createLable(backView: backView)
             
             if let containerView = UIApplication.shared.keyWindow {
                 containerView.layoutIfNeeded()
-                self.perform(#selector(alertHidden(_:)), with: backView, afterDelay: seconds, inModes: [RunLoopMode.commonModes])
+                self.perform(#selector(alertHidden(_:)), with: backView, afterDelay: seconds, inModes: [RunLoop.Mode.common])
                 let deadLine = DispatchTime.now()+seconds
                 DispatchQueue.main.asyncAfter(deadline: deadLine) {
                     self.alertHidden(backView)

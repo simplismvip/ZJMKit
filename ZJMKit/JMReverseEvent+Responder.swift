@@ -1,8 +1,8 @@
 //
-//  JMResponder+ReverseEvent.swift
-//  Pods-ZJMKit_Example
+//  JMReverseEvent+Responder.swift
+//  FBSnapshotTestCase
 //
-//  Created by JunMing on 2020/3/28.
+//  Created by JunMing on 2020/7/17.
 //
 
 import UIKit
@@ -19,3 +19,4 @@ extension UIResponder {
         
     }
 }
+

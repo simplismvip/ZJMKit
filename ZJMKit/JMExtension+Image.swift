@@ -24,15 +24,15 @@ extension UIImage {
     }
     
     /// 压缩图片
-    open func jmCompressImage(maxLength: CGFloat) ->Data? {
+    open func jmCompressImage(maxLength: CGFloat = 153600) ->Data? {
         var compression:CGFloat = 1
-        var data = UIImageJPEGRepresentation(self, compression)
+        var data = self.jpegData(compressionQuality: compression)
         if let count = data?.count, CGFloat(count) < maxLength { return data }
         var max:CGFloat = 1
         var min:CGFloat = 0
         for _ in 0..<6 {
             compression = (max+min)/2
-            data = UIImageJPEGRepresentation(self, compression)
+            data = self.jpegData(compressionQuality: compression)
             if let count = data?.count, CGFloat(count) < maxLength * 0.9 {
                 min = compression
             }else if let count = data?.count, CGFloat(count) > maxLength {
@@ -54,7 +54,7 @@ extension UIImage {
             resultImage.draw(in: CGRect.Rect(0, 0, size.width, size.height))
             guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return nil}
             UIGraphicsEndImageContext()
-            guard let new1data = UIImageJPEGRepresentation(image, compression) else { return nil}
+            guard let new1data = image.jpegData(compressionQuality: compression) else { return nil}
             newdata = new1data
         }
         return newdata

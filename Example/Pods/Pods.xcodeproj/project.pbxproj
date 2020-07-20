@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0277417E0FA8203EF8A71A5A9C5460CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
 		049179619CA56915F11D0EF169515168 /* JMExtension+Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE52FB07BB66C31891DA7D85E74F5C0F /* JMExtension+Device.swift */; };
-		09662771AB3936DF7D34E1282B27DAA6 /* JMResponder+ReverseEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB75792B08BDF23AC005374B5418241 /* JMResponder+ReverseEvent.swift */; };
 		14580399A97A139B16049A1C89FB72BD /* JMExtension+Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0065300CDCA4FC8AFC389A8A749F9E /* JMExtension+Control.swift */; };
 		156E97B809E3AC6960ECC8EA76409055 /* JMExtension+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C17517016E729B5F5AD9799BD7E3196 /* JMExtension+Color.swift */; };
 		17A1C23B3B7DF1A38E349E42A65D4C32 /* JMTextToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0590256648E2B74ABD663DDA1FD9CE7D /* JMTextToast.swift */; };
@@ -22,6 +21,8 @@
 		6447FC24374E6DE1FEC0F48D0CC87D1F /* JMUserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26AC521E968B339A79D33288E2254BD /* JMUserDefault.swift */; };
 		67F35A62160B1FA4BF26A9A88157D63C /* Pods-ZJMKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0825521B1892DE4489F47F02C6CB42FE /* Pods-ZJMKit_Tests-dummy.m */; };
 		687AC04124AD726800498965 /* JMExtension+Sequece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687AC04024AD726800498965 /* JMExtension+Sequece.swift */; };
+		687E606724C057240002747B /* JMRouter+NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E606624C057240002747B /* JMRouter+NSObject.swift */; };
+		687E606924C0577A0002747B /* JMEvent+Responder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E606824C0577A0002747B /* JMEvent+Responder.swift */; };
 		6CF587903975124EF14B999A432A91B6 /* JMExtension+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2D652EFDC991FC6CCE32BB30F8EF1 /* JMExtension+Image.swift */; };
 		7375D083DF557D59FA4C57B2B90278C8 /* JMExtension+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18722E2E8EA5A099F471D5B566C9711C /* JMExtension+View.swift */; };
 		7A293232E04569D318BF38AD4F539B5B /* JMTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250FC6DF903FDC2D56CBC6DCC14F4134 /* JMTools.swift */; };
@@ -35,7 +36,6 @@
 		C4DA415A203EFC677FA6FB5413C55028 /* Pods-ZJMKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A36B80A8131E3E53E8D70B2E22FE35B9 /* Pods-ZJMKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA740F5A2549284A731EDBD5B9DF80F5 /* Pods-ZJMKit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705F2DB4719D187972DF4A685B1D360 /* Pods-ZJMKit_Example-dummy.m */; };
 		CD0EDFD0C3B33A12D945B4562E709E12 /* JMFileTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED86BF0CB37847E7BEF60AB4F0467F9 /* JMFileTools.swift */; };
-		CE5F1D1FE4C0CDB7A43195FD2A19EA36 /* JMResponder+Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23482A214EB41BE25FF4F3D2FDD13E /* JMResponder+Event.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,7 +59,6 @@
 		0590256648E2B74ABD663DDA1FD9CE7D /* JMTextToast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JMTextToast.swift; path = ZJMKit/JMTextToast.swift; sourceTree = "<group>"; };
 		0825521B1892DE4489F47F02C6CB42FE /* Pods-ZJMKit_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZJMKit_Tests-dummy.m"; sourceTree = "<group>"; };
 		08776E304763A834EDE01DDEF80BD2B6 /* ZJMKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ZJMKit.modulemap; sourceTree = "<group>"; };
-		0A23482A214EB41BE25FF4F3D2FDD13E /* JMResponder+Event.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "JMResponder+Event.swift"; path = "ZJMKit/JMResponder+Event.swift"; sourceTree = "<group>"; };
 		0BA8E0C6B930EEFBF2F27C36AC6B6EFB /* Pods-ZJMKit_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZJMKit_Tests-Info.plist"; sourceTree = "<group>"; };
 		0C17517016E729B5F5AD9799BD7E3196 /* JMExtension+Color.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "JMExtension+Color.swift"; path = "ZJMKit/JMExtension+Color.swift"; sourceTree = "<group>"; };
 		0CFC605A398F36B805D551C554E1642D /* Pods-ZJMKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ZJMKit_Example.modulemap"; sourceTree = "<group>"; };
@@ -80,6 +79,8 @@
 		5B08EED1B97DC8457C94AD11E70B577F /* ZJMKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ZJMKit-Info.plist"; sourceTree = "<group>"; };
 		5BC73DA77F2BC2AA37DEA402A1DA5C5A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		687AC04024AD726800498965 /* JMExtension+Sequece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "JMExtension+Sequece.swift"; path = "ZJMKit/JMExtension+Sequece.swift"; sourceTree = "<group>"; };
+		687E606624C057240002747B /* JMRouter+NSObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JMRouter+NSObject.swift"; path = "ZJMKit/JMRouter+NSObject.swift"; sourceTree = "<group>"; };
+		687E606824C0577A0002747B /* JMEvent+Responder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "JMEvent+Responder.swift"; path = "ZJMKit/JMEvent+Responder.swift"; sourceTree = "<group>"; };
 		6AA2D652EFDC991FC6CCE32BB30F8EF1 /* JMExtension+Image.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "JMExtension+Image.swift"; path = "ZJMKit/JMExtension+Image.swift"; sourceTree = "<group>"; };
 		6B687603283AC19DCD2ECCF2A592563E /* Pods-ZJMKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZJMKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		6E3D3B134318F9A12E295E002A1E1CCE /* Pods_ZJMKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZJMKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,7 +96,6 @@
 		A36B80A8131E3E53E8D70B2E22FE35B9 /* Pods-ZJMKit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ZJMKit_Example-umbrella.h"; sourceTree = "<group>"; };
 		A966ED61FDB14E5C01381CE93707CB87 /* Pods-ZJMKit_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZJMKit_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		B9AD1D2E78B5D6C260D96C85C5C3D35C /* Pods-ZJMKit_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ZJMKit_Tests.modulemap"; sourceTree = "<group>"; };
-		BAB75792B08BDF23AC005374B5418241 /* JMResponder+ReverseEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "JMResponder+ReverseEvent.swift"; path = "ZJMKit/JMResponder+ReverseEvent.swift"; sourceTree = "<group>"; };
 		BCAFA5D515FEABA70981E3D7962814D6 /* ZJMKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = ZJMKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BE1A4FCE165A11F0DB4B7B53F8BC8614 /* ZJMKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZJMKit-prefix.pch"; sourceTree = "<group>"; };
 		BE845D83CF3B3C447A1324ABA8E26FCB /* JMExtension+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "JMExtension+Utils.swift"; path = "ZJMKit/JMExtension+Utils.swift"; sourceTree = "<group>"; };
@@ -221,8 +221,8 @@
 				265C28DBED71DCBCCBC28560807A34C1 /* JMExtension+ViewEvent.swift */,
 				FED86BF0CB37847E7BEF60AB4F0467F9 /* JMFileTools.swift */,
 				2B86EC4C4E9E68A0EF7F9EA6EF0CD545 /* JMPublicProtocol.swift */,
-				0A23482A214EB41BE25FF4F3D2FDD13E /* JMResponder+Event.swift */,
-				BAB75792B08BDF23AC005374B5418241 /* JMResponder+ReverseEvent.swift */,
+				687E606824C0577A0002747B /* JMEvent+Responder.swift */,
+				687E606624C057240002747B /* JMRouter+NSObject.swift */,
 				FF54DFFDE82E4E94E2A489FFA1E6364A /* JMStaticKeys.swift */,
 				0590256648E2B74ABD663DDA1FD9CE7D /* JMTextToast.swift */,
 				250FC6DF903FDC2D56CBC6DCC14F4134 /* JMTools.swift */,
@@ -376,6 +376,9 @@
 				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1100;
 				TargetAttributes = {
+					9B76CA3D28EA06D1073A15B69067CC12 = {
+						LastSwiftMigration = 1150;
+					};
 					EE9F99B1968406384D9F28D15A5AB426 = {
 						LastSwiftMigration = 1150;
 					};
@@ -435,6 +438,8 @@
 				049179619CA56915F11D0EF169515168 /* JMExtension+Device.swift in Sources */,
 				6CF587903975124EF14B999A432A91B6 /* JMExtension+Image.swift in Sources */,
 				4CAF5ACE39D491ADF76AAF5D3FE07BCF /* JMExtension+Label.swift in Sources */,
+				687E606924C0577A0002747B /* JMEvent+Responder.swift in Sources */,
+				687E606724C057240002747B /* JMRouter+NSObject.swift in Sources */,
 				9DE08F7212D800452739A2985BEEBC4C /* JMExtension+String.swift in Sources */,
 				7A451D6FF11E37ABEE4EE99BEEB6C9FA /* JMExtension+Utils.swift in Sources */,
 				228EAEA275E0B77A99ACF81351A1EE54 /* JMExtension+Vc.swift in Sources */,
@@ -442,8 +447,6 @@
 				293AC7CC04888E75B89B2EEAAC8783D2 /* JMExtension+ViewEvent.swift in Sources */,
 				CD0EDFD0C3B33A12D945B4562E709E12 /* JMFileTools.swift in Sources */,
 				8A76AF9DBFEDA1E265A66E9864CD9031 /* JMPublicProtocol.swift in Sources */,
-				CE5F1D1FE4C0CDB7A43195FD2A19EA36 /* JMResponder+Event.swift in Sources */,
-				09662771AB3936DF7D34E1282B27DAA6 /* JMResponder+ReverseEvent.swift in Sources */,
 				23DE1790DC2EDD4E08AD65C7ED071DB0 /* JMStaticKeys.swift in Sources */,
 				17A1C23B3B7DF1A38E349E42A65D4C32 /* JMTextToast.swift in Sources */,
 				7A293232E04569D318BF38AD4F539B5B /* JMTools.swift in Sources */,
@@ -743,7 +746,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -775,7 +778,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

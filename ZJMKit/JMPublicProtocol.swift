@@ -18,7 +18,7 @@ public enum JMPosition {
 public protocol JMOpenEmailProtocol { }
 extension JMOpenEmailProtocol {
     /// 打开系统邮箱协议
-    public func jm_openEmail(_ them:String, _ toEmail:String, _ ccEmail:String?, _ content:String) {
+    public func jmOpenEmail(_ them:String, _ toEmail:String, _ ccEmail:String?, _ content:String) {
         let mailUrl = NSMutableString()
         // 添加收件人
         mailUrl.appendFormat("mailto:%@,", toEmail)
@@ -34,10 +34,15 @@ extension JMOpenEmailProtocol {
         guard let em = mailUrl.addingPercentEncoding(withAllowedCharacters: character) else { return }
         if let emailUrl = URL(string: em) {
             if #available(iOS 10.0, *) {
-                UIApplication.shared.open(emailUrl, options: [:], completionHandler: nil)
+                UIApplication.shared.open(emailUrl, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             } else {
                 // Fallback on earlier versions
             }
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

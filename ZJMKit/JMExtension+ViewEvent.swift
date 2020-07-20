@@ -10,18 +10,18 @@ import UIKit
 // MARK: -- 为UIButton添加便利方法 ---
 extension UIButton {
     /// 移除block
-    open func jm_removeAction() {
-        objc_setAssociatedObject(self, &jm_eventStore.event_button_action, nil, .OBJC_ASSOCIATION_RETAIN)
+    open func jmRemoveAction() {
+        objc_setAssociatedObject(self, &JMEventStore.event_button_action, nil, .OBJC_ASSOCIATION_RETAIN)
     }
     
     /// 按钮添加block响应
-    open func jm_addAction(event:UIControl.Event = .touchUpInside,action:@escaping (UIButton)->Void) {
-        objc_setAssociatedObject(self, &jm_eventStore.event_button_action, action, .OBJC_ASSOCIATION_RETAIN)
+    open func jmAddAction(event:UIControl.Event = .touchUpInside,action:@escaping (UIButton)->Void) {
+        objc_setAssociatedObject(self, &JMEventStore.event_button_action, action, .OBJC_ASSOCIATION_RETAIN)
         addTarget(self, action: #selector(targetAction(_:)), for: event)
     }
     
     @objc private func targetAction(_ sender:UIButton) {
-        if let block = objc_getAssociatedObject(self, &jm_eventStore.event_button_action) as? (UIButton)->Void {
+        if let block = objc_getAssociatedObject(self, &JMEventStore.event_button_action) as? (UIButton)->Void {
             block(sender)
         }
     }
@@ -45,49 +45,49 @@ extension UIView {
     }
     
     /// 1、添加block, ⚠️⚠️⚠️暂不支持UIButton
-    open func jm_addblock(block:@escaping ()->Void) {
+    open func jmAddblock(block:@escaping ()->Void) {
         if isKind(of: UIButton.self) { return }
-        setBlock(block: block, Key: &jm_eventStore.event_click)
+        setBlock(block: block, Key: &JMEventStore.event_click)
     }
     /// 移除block
-    open func jm_removeblock() {
-        removeBlock(Key: &jm_eventStore.event_click)
+    open func jmRemoveblock() {
+        removeBlock(Key: &JMEventStore.event_click)
     }
     
     /// 2、添加双击手势 block
-    open func jm_addDoubleleTapGesture(block:@escaping ()->Void) {
-        setBlock(block: block, Key: &jm_eventStore.event_double_tap)
+    open func jmAddDoubleleTapGesture(block:@escaping ()->Void) {
+        setBlock(block: block, Key: &JMEventStore.event_double_tap)
         removeTapGestureRecognizerWithTaps(taps: 2, touches: 1)
         let gesture = addTapGestureRecognizerWithTaps(taps: 2, touches: 1, select: #selector(viewWasDoubleTapped))
         addRequiredToDoubleTapsRecognizer(recognizer: gesture)
     }
     
     /// 移除双击手势block
-    open func jm_removeDoubleTapGesture() {
-        removeBlock(Key: &jm_eventStore.event_double_tap)
+    open func jmRemoveDoubleTapGesture() {
+        removeBlock(Key: &JMEventStore.event_double_tap)
         removeTapGestureRecognizerWithTaps(taps: 2, touches: 1)
     }
     
     @objc private func viewWasDoubleTapped() {
-        runBlock(Key: &jm_eventStore.event_double_tap)
+        runBlock(Key: &JMEventStore.event_double_tap)
     }
     
     /// 3、添加单击手势 block
-    open func jm_addSingleTapGesture(block:@escaping ()->Void) {
-        setBlock(block: block, Key: &jm_eventStore.event_single_tap)
+    open func jmAddSingleTapGesture(block:@escaping ()->Void) {
+        setBlock(block: block, Key: &JMEventStore.event_single_tap)
         removeTapGestureRecognizerWithTaps(taps: 1, touches: 1)
         let gesture = addTapGestureRecognizerWithTaps(taps: 1, touches: 1, select: #selector(viewWasSingleTapped))
         addRequirementToSingleTapsRecognizer(recognizer: gesture)
     }
     
     /// 移除单击手势block
-    open func jm_removeSingleTapGesture() {
-        removeBlock(Key: &jm_eventStore.event_single_tap)
+    open func jmRemoveSingleTapGesture() {
+        removeBlock(Key: &JMEventStore.event_single_tap)
         removeTapGestureRecognizerWithTaps(taps: 2, touches: 1)
     }
     
     @objc private func viewWasSingleTapped() {
-        runBlock(Key: &jm_eventStore.event_single_tap)
+        runBlock(Key: &JMEventStore.event_single_tap)
     }
     
     private func addTapGestureRecognizerWithTaps(taps:Int,touches:Int,select:Selector?)->UITapGestureRecognizer {
@@ -112,20 +112,20 @@ extension UIView {
     }
     
     /// 3、添加长按手势 block
-    open func jm_addLongPressGesture(block:@escaping ()->Void) {
-        setBlock(block: block, Key: &jm_eventStore.event_long_press)
+    open func jmAddLongPressGesture(block:@escaping ()->Void) {
+        setBlock(block: block, Key: &JMEventStore.event_long_press)
         removeLongPressGestureRecognizer()
         addLongPressGestureRecognizerSelector(select: #selector(viewWasLongPressed(_:)))
     }
     /// 移除长按手势 block
-    open func jm_removeLongPressGesture() {
-        removeBlock(Key: &jm_eventStore.event_long_press)
+    open func jmRemoveLongPressGesture() {
+        removeBlock(Key: &JMEventStore.event_long_press)
         removeLongPressGestureRecognizer()
     }
     
     @objc private func viewWasLongPressed(_ longpress:UILongPressGestureRecognizer) {
         if longpress.state == .began {
-            runBlock(Key: &jm_eventStore.event_long_press)
+            runBlock(Key: &JMEventStore.event_long_press)
         }
     }
     
@@ -173,12 +173,12 @@ extension UIView {
     }
     
     override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if objc_getAssociatedObject(self, &jm_eventStore.event_click) != nil {
+        if objc_getAssociatedObject(self, &JMEventStore.event_click) != nil {
             if !isKind(of: UIControl.self) {
                 let touch = touches.randomElement()
                 if let point = touch?.location(in: self), bounds.contains(point) {
                     if let inView = touch?.view?.isEqual(self), inView {
-                        runBlock(Key: &jm_eventStore.event_click)
+                        runBlock(Key: &JMEventStore.event_click)
                     }
                 }
             }
