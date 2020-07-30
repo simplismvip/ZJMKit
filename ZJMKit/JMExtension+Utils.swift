@@ -133,5 +133,10 @@ extension NotificationCenter {
     open class func jmPost(name: String, object: Any? = nil) {
         NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: object)
     }
+    
+    public typealias jmNotiBlock = (AnyObject?)->Void
+    private struct storeKeys {
+        static var notify = "storeKeys.notify"
+    }
 }
 

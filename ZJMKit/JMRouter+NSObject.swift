@@ -15,17 +15,25 @@ public typealias MsgPriority = NSInteger
 let MsgPriorityDefault: MsgPriority = 100
 let MsgPriorityHigh: MsgPriority = 1000
 
+// 弱引用对象，因为数组会对元素强引用导致关联对象不释放内存
+private final class JMWeakBox<A: NSObject> {
+    weak var weakObjc: A?
+    init(_ objc: A) {
+        weakObjc = objc
+    }
+}
+
 // MARK: 😀😀😀 -- 主要都是使用这个分类中的方法发送消息 --
 open class JMRouter: NSObject {
     private let lock = NSRecursiveLock()
-    private var msgNameObjsDictM = [String: [NSObject]]()
+    private var msgNameObjsDictM = [String: [JMWeakBox]]()
      
     fileprivate func sendMsg(msgName: String, info: MsgObjc?) {
         guard let originArr = msgNameObjsDictM[msgName] else { return }
         lock.lock()
         for obj in originArr {
-            if let router = obj.msgRouter, router.isEqual(self) {
-                if let block = obj.msgDictM[msgName] {
+            if let router = obj.weakObjc?.msgRouter, router.isEqual(self) {
+                if let block = obj.weakObjc?.msgDictM[msgName] {
                     let _ = block(info)
                 }
             }
@@ -37,19 +45,19 @@ open class JMRouter: NSObject {
         lock.lock()
         obj.msgDictM[msgName] = block
         if msgNameObjsDictM[msgName] == nil {
-            msgNameObjsDictM[msgName] = [NSObject]()
+            msgNameObjsDictM[msgName] = [JMWeakBox]()
         }
         
         if var arr = msgNameObjsDictM[msgName] {
             var index = 0
             for (i, value) in arr.enumerated() {
-                if value.msgPriority > priority {
+                if value.weakObjc?.msgPriority ?? 100 > priority {
                     index = i + 1
                     break
                 }
             }
             obj.msgPriority = priority
-            arr.insert(obj, at: index)
+            arr.insert(JMWeakBox(obj), at: index)
             msgNameObjsDictM.updateValue(arr, forKey: msgName)
         }
         lock.unlock()
