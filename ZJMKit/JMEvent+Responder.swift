@@ -10,14 +10,14 @@ import UIKit
 private let kEventBlockKey = "kEventBlockKey"
 private let kNextRespKey = "kNextRespKey"
 extension UIResponder {
-    public typealias EventBlock = (_ info:AnyObject?) -> Void
+    public typealias EventBlock = (_ info: AnyObject?) -> Void
     private struct Store { static var key = "storeKey" }
     
     // 添加计算属性，用来绑定 AssociatedKeys
     private var eventDic: Dictionary<String, AnyObject> {
         get {
-            guard let dic = objc_getAssociatedObject(self, &Store.key) as? Dictionary<String, AnyObject> else{
-                self.eventDic = Dictionary<String,AnyObject>()
+            guard let dic = objc_getAssociatedObject(self, &Store.key) as? Dictionary<String, AnyObject> else {
+                self.eventDic = Dictionary<String, AnyObject>()
                 return self.eventDic
             }
             return dic
@@ -26,7 +26,7 @@ extension UIResponder {
     }
     
     /// 向 父视图/父控制器 发送消息
-    open func jmRouterEvent(eventName:String, info:AnyObject?) {
+    open func jmRouterEvent(eventName: String, info: AnyObject?) {
         if let blockDic = eventDic[eventName] {
             if let block = blockDic[kEventBlockKey] as? EventBlock {
                 block(info)
@@ -42,7 +42,7 @@ extension UIResponder {
     }
     
     /// 向 父视图/父控制器 注册消息
-    open func jmRegisterEvent(eventName:String,block:@escaping EventBlock,next:Bool) {
-        eventDic[eventName] = [kEventBlockKey:block,kNextRespKey:next] as AnyObject
+    open func jmRegisterEvent(eventName: String,block: @escaping EventBlock, next: Bool) {
+        eventDic[eventName] = [kEventBlockKey: block, kNextRespKey: next] as AnyObject
     }
 }

@@ -133,3 +133,103 @@ open class JMTools {
         }
     }
 }
+
+public class JMUtility {
+    private let hightLabel = UILabel()
+    private var contSize = Dictionary<String, CGSize>()
+    private let width = UIScreen.main.bounds.size.width
+    public static let share: JMUtility = {
+        let util = JMUtility()
+        util.hightLabel.numberOfLines = 0
+        return util
+    }()
+    
+    public func contentSize(textAttri: NSMutableAttributedString, textID:String, maxW: CGFloat, font: UIFont) -> CGSize {
+        if let size = contSize[textID] {
+            return size
+        }else {
+            hightLabel.font = font
+            hightLabel.attributedText = textAttri
+            let maxSize = CGSize(width: maxW, height: CGFloat.greatestFiniteMagnitude)
+            let size = hightLabel.sizeThatFits(maxSize)
+            contSize[textID] = size
+            return size
+        }
+    }
+    
+    /// 获取Size，供外部使用
+    public func getContentSize(textID: String) -> CGSize? {
+        return contSize[textID]
+    }
+    
+    /// 设置Size，供外部使用
+    public func setContentSize(textID: String, size: CGSize) {
+        contSize[textID] = size
+    }
+    
+    /// 语音
+    public func audioContentSize(duration: CGFloat, maxW: Double) -> CGSize {
+        // 使用公式 长度 = (最长－最小)*(2/pi)*artan(时间/10)+最小，
+        // 在10秒时变化逐渐变缓，随着时间增加 无限趋向于最大值
+        let value = 2.0 * atan((Double(duration)/1000.0-1.0)/10.0)/Double.pi
+        let minW = Double(64)
+        return CGSize(width: (maxW - minW) * value + minW, height: 30.0)
+    }
+    
+    /// 图片
+    public func imageContentSize(size: CGSize, thumbPath: String?) -> CGSize {
+        let minW = width / 4.0
+        let minH = width / 4.0
+        let maxW = width - 184
+        let maxH = width - 184
+        
+        var imageSize = CGSize.zero
+        if size != CGSize.zero {
+            imageSize = size
+        }else {
+            if let path = thumbPath, let image = UIImage(contentsOfFile: path) {
+                imageSize = image.size
+            }
+        }
+        return sizeWithImageOriginSize(oriSize: imageSize, minSize: CGSize(width: minW, height: minH), maxSize: CGSize(width: maxW, height: maxH))
+    }
+    
+    /// 计算照片比例
+    public func sizeWithImageOriginSize(oriSize: CGSize, minSize: CGSize, maxSize: CGSize) -> CGSize{
+        var size = CGSize.zero
+        let oriWidth = oriSize.width
+        let oriHeight = oriSize.height
+        
+        let minWidth = minSize.width
+        let minHeight = minSize.height
+        
+        let maxWidth = maxSize.width
+        let maxHeight = maxSize.height
+        
+        if oriWidth > oriHeight {//宽图
+            size.height = minHeight;  //高度取最小高度
+            size.width = oriWidth * minWidth / oriHeight;
+            if size.width > maxWidth {
+                size.width = maxWidth
+            }
+        }else if oriWidth < oriHeight {//高图
+            size.width = minWidth;
+            size.height = oriHeight * minWidth / oriWidth;
+            if (size.height > maxHeight) {
+                size.height = maxHeight;
+            }
+        }else {//方图
+            if (oriWidth > maxWidth) {
+                size.width = maxWidth;
+                size.height = maxHeight;
+            }else if(oriWidth > minWidth) {
+                size.width = oriWidth;
+                size.height = oriHeight;
+            }else{
+                size.width = minWidth;
+                size.height = minHeight;
+            }
+        }
+        return size
+    }
+}

@@ -14,9 +14,9 @@ public enum GradientStyle {
 }
 
 extension UIImage {
-    open var origin:UIImage { return withRenderingMode(.alwaysOriginal) }
+    open var origin: UIImage { return withRenderingMode(.alwaysOriginal) }
     
-    open var resizable:UIImage {
+    open var resizable: UIImage {
         let w = size.width * 0.5
         let h = size.height * 0.5
         let edge = UIEdgeInsets(top: h, left: w, bottom: h, right: w)

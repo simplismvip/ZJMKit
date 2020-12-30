@@ -18,4 +18,5 @@ public struct JMEventStore {
     static var event_rightItem = "jmEventStore.right_item"
     static var event_target_key = "jmEventStore.control_target"
     static var event_button_action = "jmEventStore.button_target"
+    static var event_notify_action = "jmEventStore.event_notify_action"
 }

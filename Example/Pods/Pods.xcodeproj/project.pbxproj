@@ -19,6 +19,7 @@
 		3A6A19FEF36744273EE8E974A23865B0 /* JMExtension+Sequece.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDD53305C53D1D14B4C47C681AB5DAD /* JMExtension+Sequece.swift */; };
 		5FEE88ED48B378E248896D087C4B5457 /* JMExtension+ViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAB60D1509445620AC379E63C55DDAE /* JMExtension+ViewEvent.swift */; };
 		67F35A62160B1FA4BF26A9A88157D63C /* Pods-ZJMKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0825521B1892DE4489F47F02C6CB42FE /* Pods-ZJMKit_Tests-dummy.m */; };
+		68C3D3CE2586FF120000853C /* JMNotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C3D3CD2586FF120000853C /* JMNotify.swift */; };
 		75E87FF5897B43BEB5B9F36305FED7F7 /* JMExtension+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C08CE4BC8C9855441C5C43C449125C3 /* JMExtension+View.swift */; };
 		852075C63CCC105CD9C644C392FBD0BC /* JMPublicProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A54676940082D9157B6019AAD8970 /* JMPublicProtocol.swift */; };
 		94984713D5A2BEC9EEB7A0821A50EBA7 /* JMExtension+Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A112A85F1626F94F555881C750C1B0 /* JMExtension+Label.swift */; };
@@ -65,7 +66,7 @@
 		1705F2DB4719D187972DF4A685B1D360 /* Pods-ZJMKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZJMKit_Example-dummy.m"; sourceTree = "<group>"; };
 		17AA43D193EC66BEB468CC22F5EA1178 /* Pods-ZJMKit_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZJMKit_Example-Info.plist"; sourceTree = "<group>"; };
 		1CF17E00F51A6892F2CAB5AC46AFA7BD /* Pods-ZJMKit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZJMKit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		287A35D23EED6D254C84544DB8F2F6CE /* ZJMKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = ZJMKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		287A35D23EED6D254C84544DB8F2F6CE /* ZJMKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = ZJMKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		2E813D03E9FB847AA029AB134B006575 /* JMExtension+Image.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "JMExtension+Image.swift"; path = "ZJMKit/JMExtension+Image.swift"; sourceTree = "<group>"; };
 		30A9C27D457EBB21549985FACF00B7A4 /* Pods-ZJMKit_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZJMKit_Example-frameworks.sh"; sourceTree = "<group>"; };
 		312B988EF117AE4DE76A268D970131FE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -77,12 +78,13 @@
 		4D44054782EC3352CDB8D5799FE0A821 /* Pods-ZJMKit_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ZJMKit_Tests-umbrella.h"; sourceTree = "<group>"; };
 		51FABE0B42561B61E8C1809D69C2605D /* ZJMKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ZJMKit-dummy.m"; sourceTree = "<group>"; };
 		524794F074AC3E8CA03445C8F4A06A6F /* JMRouter+NSObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "JMRouter+NSObject.swift"; path = "ZJMKit/JMRouter+NSObject.swift"; sourceTree = "<group>"; };
-		5556076C8D287F0F6FB34891F417C225 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		5556076C8D287F0F6FB34891F417C225 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5694CE051EA47A87B5C09AC766E83BCF /* JMExtension+Device.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "JMExtension+Device.swift"; path = "ZJMKit/JMExtension+Device.swift"; sourceTree = "<group>"; };
 		5760A5A48E8CB27978D34AEEBF1AF006 /* JMExtension+Vc.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "JMExtension+Vc.swift"; path = "ZJMKit/JMExtension+Vc.swift"; sourceTree = "<group>"; };
 		59B0F8252D63CE893F07DCAC543CB684 /* JMExtension+Color.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "JMExtension+Color.swift"; path = "ZJMKit/JMExtension+Color.swift"; sourceTree = "<group>"; };
+		68C3D3CD2586FF120000853C /* JMNotify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JMNotify.swift; path = ZJMKit/JMNotify.swift; sourceTree = "<group>"; };
 		6B687603283AC19DCD2ECCF2A592563E /* Pods-ZJMKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZJMKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		6E3D3B134318F9A12E295E002A1E1CCE /* Pods_ZJMKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ZJMKit_Example.framework; path = "Pods-ZJMKit_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E3D3B134318F9A12E295E002A1E1CCE /* Pods_ZJMKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZJMKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E62E8D6E71A27712F0F8FFF50EEA370 /* ZJMKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZJMKit.release.xcconfig; sourceTree = "<group>"; };
 		75901535B216881B0C6EF4B427C4A708 /* ZJMKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ZJMKit-Info.plist"; sourceTree = "<group>"; };
 		79F69F028B7F397563958C243B56B3D0 /* ZJMKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZJMKit-umbrella.h"; sourceTree = "<group>"; };
@@ -92,7 +94,7 @@
 		99E5116897B1396252D464DA921CCBA7 /* Pods-ZJMKit_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZJMKit_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		99EF54BEB3B5D5A7AD1BD93E56A3988C /* Pods-ZJMKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZJMKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9C08CE4BC8C9855441C5C43C449125C3 /* JMExtension+View.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "JMExtension+View.swift"; path = "ZJMKit/JMExtension+View.swift"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A36B80A8131E3E53E8D70B2E22FE35B9 /* Pods-ZJMKit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ZJMKit_Example-umbrella.h"; sourceTree = "<group>"; };
 		A8342D59D3F52345CBA0BC924B0AF5DE /* JMUserDefault.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JMUserDefault.swift; path = ZJMKit/JMUserDefault.swift; sourceTree = "<group>"; };
 		A8F2BD1C92CCD4B0456F15A182E61048 /* JMTools.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JMTools.swift; path = ZJMKit/JMTools.swift; sourceTree = "<group>"; };
@@ -102,11 +104,11 @@
 		C0449C21B6C5E33F225FCC016CCD71AE /* Pods-ZJMKit_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZJMKit_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		C073B22653F5FCBDF638345D13B9620B /* ZJMKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZJMKit.debug.xcconfig; sourceTree = "<group>"; };
 		C093CE30589DB813007233AB81DDB807 /* JMReverseEvent+Responder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "JMReverseEvent+Responder.swift"; path = "ZJMKit/JMReverseEvent+Responder.swift"; sourceTree = "<group>"; };
-		C18B8CD25CC8B111682DB4BF6E043E08 /* Pods_ZJMKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ZJMKit_Tests.framework; path = "Pods-ZJMKit_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C18B8CD25CC8B111682DB4BF6E043E08 /* Pods_ZJMKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZJMKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2072313A8F189139C7A776F365445B8 /* JMTextToast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JMTextToast.swift; path = ZJMKit/JMTextToast.swift; sourceTree = "<group>"; };
 		CCDD53305C53D1D14B4C47C681AB5DAD /* JMExtension+Sequece.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "JMExtension+Sequece.swift"; path = "ZJMKit/JMExtension+Sequece.swift"; sourceTree = "<group>"; };
-		E31738DFC8AA778F6A04E46DD12EB1D9 /* ZJMKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ZJMKit.framework; path = ZJMKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E604DCC1D31780AD8C2BAD21A5F77F49 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		E31738DFC8AA778F6A04E46DD12EB1D9 /* ZJMKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZJMKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E604DCC1D31780AD8C2BAD21A5F77F49 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EFAB60D1509445620AC379E63C55DDAE /* JMExtension+ViewEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "JMExtension+ViewEvent.swift"; path = "ZJMKit/JMExtension+ViewEvent.swift"; sourceTree = "<group>"; };
 		F31EC7C9A8A29C060DFEAF0D42DD8947 /* ZJMKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ZJMKit.modulemap; sourceTree = "<group>"; };
 		F611AD04FB07C3003195002EB5A760F7 /* Pods-ZJMKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZJMKit_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 		C29BCED433AF9E9BFE95B5F48261604D /* ZJMKit */ = {
 			isa = PBXGroup;
 			children = (
+				68C3D3CD2586FF120000853C /* JMNotify.swift */,
 				0964D86352768FA4A41AF96D3337CF37 /* JMEvent+Responder.swift */,
 				59B0F8252D63CE893F07DCAC543CB684 /* JMExtension+Color.swift */,
 				7DCAC72C7DD87ED695DA73BC6DE54E13 /* JMExtension+Control.swift */,
@@ -449,6 +452,7 @@
 				75E87FF5897B43BEB5B9F36305FED7F7 /* JMExtension+View.swift in Sources */,
 				5FEE88ED48B378E248896D087C4B5457 /* JMExtension+ViewEvent.swift in Sources */,
 				049C9C9E88EEBD53CF608F248E9FAA7E /* JMFileTools.swift in Sources */,
+				68C3D3CE2586FF120000853C /* JMNotify.swift in Sources */,
 				852075C63CCC105CD9C644C392FBD0BC /* JMPublicProtocol.swift in Sources */,
 				23CD19A1337545454BDA973B85C94C87 /* JMReverseEvent+Responder.swift in Sources */,
 				D49A9330810F05D86406D88B299EA88C /* JMRouter+NSObject.swift in Sources */,
@@ -739,8 +743,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};

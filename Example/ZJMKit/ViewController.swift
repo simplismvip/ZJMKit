@@ -15,6 +15,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.jmRandColor
         jmSendMsg(msgName: "", info: nil)
+        
+        JMNotify.jmNotify(eventName: "", info: nil)
     }
 
     @IBAction func show(_ sender: Any) {
