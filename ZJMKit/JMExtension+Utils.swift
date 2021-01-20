@@ -123,20 +123,3 @@ extension Date {
         return (nowComps == selfComps)
     }
 }
-
-extension NotificationCenter {
-    /// 添加通知
-    open class func jmObserver(_ observer: Any, selector: Selector, name: String, object: Any? = nil) {
-        NotificationCenter.default.addObserver(observer, selector: selector, name: NSNotification.Name(rawValue: name), object: object)
-    }
-    /// 发送通知
-    open class func jmPost(name: String, object: Any? = nil) {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: object)
-    }
-    
-    public typealias jmNotiBlock = (AnyObject?)->Void
-    private struct storeKeys {
-        static var notify = "storeKeys.notify"
-    }
-}
-

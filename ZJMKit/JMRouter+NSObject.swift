@@ -15,14 +15,6 @@ public typealias MsgPriority = NSInteger
 let MsgPriorityDefault: MsgPriority = 100
 let MsgPriorityHigh: MsgPriority = 1000
 
-// 弱引用对象，因为数组会对元素强引用导致关联对象不释放内存
-private final class JMWeakBox<A: NSObject> {
-    weak var weakObjc: A?
-    init(_ objc: A) {
-        weakObjc = objc
-    }
-}
-
 // MARK: 😀😀😀 -- 主要都是使用这个分类中的方法发送消息 --
 open class JMRouter: NSObject {
     private let lock = NSRecursiveLock()

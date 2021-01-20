@@ -1,0 +1,43 @@
+[
+    {
+        "title":"自定义通知",
+        "subTitle":"NotifyProxy",
+        "pushvc":"SECONDController",
+        "eventname":"ZFMapNearRentCell"
+    },{
+        "title":"自定义发消息",
+        "subTitle":"ControlProxy",
+        "pushvc":"JMViewController",
+        "eventname":"ZFMapNearRentCell"
+    },{
+        "title":"附近小区",
+        "subTitle":"xxxx xxxx xxxx",
+        "pushvc":"ZFMapNearRentCell",
+        "eventname":"ZFMapNearRentCell"
+    },{
+        "title":"附近小区",
+        "subTitle":"xxxx xxxx xxxx",
+        "pushvc":"ZFMapNearRentCell",
+        "eventname":"ZFMapNearRentCell"
+    },{
+        "title":"附近小区",
+        "subTitle":"xxxx xxxx xxxx",
+        "pushvc":"ZFMapNearRentCell",
+        "eventname":"ZFMapNearRentCell"
+    },{
+        "title":"附近小区",
+        "subTitle":"xxxx xxxx xxxx",
+        "pushvc":"ZFMapNearRentCell",
+        "eventname":"ZFMapNearRentCell"
+    },{
+        "title":"附近小区",
+        "subTitle":"xxxx xxxx xxxx",
+        "pushvc":"ZFMapNearRentCell",
+        "eventname":"ZFMapNearRentCell"
+    },{
+        "title":"附近小区",
+        "subTitle":"xxxx xxxx xxxx",
+        "pushvc":"ZFMapNearRentCell",
+        "eventname":"ZFMapNearRentCell"
+    }
+]

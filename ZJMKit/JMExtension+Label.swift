@@ -8,11 +8,35 @@
 import UIKit
 extension UILabel {
     /// 配置字符串
-    open func jmConfigLabel(alig:NSTextAlignment = .left,font:UIFont?,color:UIColor = UIColor.gray) {
+    open func jmConfigLabel(alig: NSTextAlignment = .left,font:UIFont?,color:UIColor = UIColor.gray) {
         self.numberOfLines = 0
         self.textColor = color
         self.font = font
         self.textAlignment = alig
+    }
+    
+    /// 配置字符串
+    open func jmText(_ text: String) -> Self {
+        self.text = text
+        return self
+    }
+    
+    /// 配置字符串
+    open func tColor(_ color: UIColor) -> Self {
+        self.textColor = color
+        return self
+    }
+    
+    /// 配置字符串
+    open func jmFont(_ font: UIFont) -> Self {
+        self.font = font
+        return self
+    }
+    
+    /// 配置字符串
+    open func jmFont(_ alig: NSTextAlignment) -> Self {
+        self.textAlignment = alig
+        return self
     }
 }
 

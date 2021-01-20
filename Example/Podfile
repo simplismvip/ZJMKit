@@ -2,6 +2,9 @@ use_frameworks!
 
 target 'ZJMKit_Example' do
   pod 'ZJMKit', :path => '../'
+  pod 'SnapKit'
+  pod 'HandyJSON'
+  pod 'Alamofire'
 
   target 'ZJMKit_Tests' do
     inherit! :search_paths

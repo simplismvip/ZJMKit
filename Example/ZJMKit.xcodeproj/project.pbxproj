@@ -13,6 +13,10 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		68C08A7525B7C2380080EE3D /* JMDataTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C08A7425B7C2380080EE3D /* JMDataTools.swift */; };
+		68C08A7925B7C6030080EE3D /* JMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C08A7825B7C6030080EE3D /* JMViewController.swift */; };
+		68C08A7D25B7C6720080EE3D /* zjmkit.json in Resources */ = {isa = PBXBuildFile; fileRef = 68C08A7C25B7C6720080EE3D /* zjmkit.json */; };
+		68C08A8125B7C6860080EE3D /* JMModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C08A8025B7C6860080EE3D /* JMModel.swift */; };
 		86431089CD2FBC935C9E4123 /* Pods_ZJMKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E1B0BCBCB4D1C9A6AC96E9 /* Pods_ZJMKit_Example.framework */; };
 		B3C7FC49246D2A1791016425 /* Pods_ZJMKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 151F7779605821ECF821D283 /* Pods_ZJMKit_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -42,6 +46,10 @@
 		607FACE51AFB9204008FA782 /* ZJMKit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZJMKit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		68C08A7425B7C2380080EE3D /* JMDataTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JMDataTools.swift; sourceTree = "<group>"; };
+		68C08A7825B7C6030080EE3D /* JMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JMViewController.swift; sourceTree = "<group>"; };
+		68C08A7C25B7C6720080EE3D /* zjmkit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = zjmkit.json; sourceTree = "<group>"; };
+		68C08A8025B7C6860080EE3D /* JMModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JMModel.swift; sourceTree = "<group>"; };
 		84F0217FDEA89A0667E504AA /* Pods-ZJMKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJMKit_Example.debug.xcconfig"; path = "Target Support Files/Pods-ZJMKit_Example/Pods-ZJMKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		85BEC0337432D2FCF68D7C06 /* ZJMKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ZJMKit.podspec; path = ../ZJMKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8EC05D4D707233194A12BE19 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -115,6 +123,10 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				68C08A7425B7C2380080EE3D /* JMDataTools.swift */,
+				68C08A7825B7C6030080EE3D /* JMViewController.swift */,
+				68C08A8025B7C6860080EE3D /* JMModel.swift */,
+				68C08A7C25B7C6720080EE3D /* zjmkit.json */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -248,6 +260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68C08A7D25B7C6720080EE3D /* zjmkit.json in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -271,10 +284,16 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ZJMKit_Example/Pods-ZJMKit_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/ZJMKit/ZJMKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZJMKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,8 +369,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68C08A7525B7C2380080EE3D /* JMDataTools.swift in Sources */,
+				68C08A8125B7C6860080EE3D /* JMModel.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				68C08A7925B7C6030080EE3D /* JMViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

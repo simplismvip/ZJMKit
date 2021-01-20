@@ -7,26 +7,6 @@
 
 import UIKit
 
-// MARK: -- 为UIButton添加便利方法 ---
-extension UIButton {
-    /// 移除block
-    open func jmRemoveAction() {
-        objc_setAssociatedObject(self, &JMEventStore.event_button_action, nil, .OBJC_ASSOCIATION_RETAIN)
-    }
-    
-    /// 按钮添加block响应
-    open func jmAddAction(event:UIControl.Event = .touchUpInside,action:@escaping (UIButton)->Void) {
-        objc_setAssociatedObject(self, &JMEventStore.event_button_action, action, .OBJC_ASSOCIATION_RETAIN)
-        addTarget(self, action: #selector(targetAction(_:)), for: event)
-    }
-    
-    @objc private func targetAction(_ sender:UIButton) {
-        if let block = objc_getAssociatedObject(self, &JMEventStore.event_button_action) as? (UIButton)->Void {
-            block(sender)
-        }
-    }
-}
-
 // MARK: -- 为View、Label、Imageview 等添加便利方法 ---
 extension UIView {
     typealias block = ()->Void

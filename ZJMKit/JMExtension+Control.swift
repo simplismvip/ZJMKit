@@ -7,79 +7,67 @@
 
 import UIKit
 
-//open class UIControlBlockTarget:NSObject {
-//    typealias jm_block = (AnyObject?)->Void
-//    var block:jm_block
-//    open var events:UIControl.Event
-//    
-//    init(block:@escaping jm_block,events:UIControl.Event) {
-//        self.block = block
-//        self.events = events
-//    }
-//    
-//    @objc open func invoke(_ sender:AnyObject) {
-//        block(sender)
-//    }
-//}
-//
-//extension UIControl {
-//    var controlBlockTargets:Array<UIControlBlockTarget> {
-//        get {
-//            if let targets = objc_getAssociatedObject(self, &jm_eventStore.event_target_key) as? Array<UIControlBlockTarget> {
-//                return targets
-//            }else {
-//                self.controlBlockTargets = Array<UIControlBlockTarget>()
-//                return self.controlBlockTargets
-//            }
-//        }
-//        set(newValue){
-//            objc_setAssociatedObject(self, &jm_eventStore.event_target_key, newValue, .OBJC_ASSOCIATION_RETAIN)
-//        }
-//    }
-//    
-//    func removeAllTargets() {
-//        allTargets.forEach { (object) in
-//            removeTarget(object, action: nil, for: .allEvents)
-//        }
-//        controlBlockTargets.removeAll()
-//    }
-//    
-//    func setTarget(target:AnyObject,action:Selector,events:UIControl.Event) {
-//        allTargets.forEach { currentTarget in
-//            let actions = self.actions(forTarget: currentTarget, forControlEvent: events)
-//            actions?.forEach({ currentAction in
-//                removeTarget(currentTarget, action: NSSelectorFromString(currentAction), for: events)
-//            })
-//        }
-//        addTarget(target, action: action, for: events)
-//    }
-//    
-//    func addBlockForEvents(evnts:UIControl.Event,block:@escaping (AnyObject?)->Void) {
-//        let target = UIControlBlockTarget(block:block , events: evnts)
-//        addTarget(target, action: #selector(UIControlBlockTarget.invoke(_:)), for: evnts)
-//        controlBlockTargets.append(target)
-//    }
-//    
-//    func setBlockForEvents(evnts:UIControl.Event,block:@escaping (AnyObject?)->Void) {
-//        removeAllBlocksControlEvents(evnts: evnts, block: block)
-//        addBlockForEvents(evnts: evnts, block: block)
-//    }
-//    
-//    func removeAllBlocksControlEvents(evnts:UIControl.Event,block:@escaping (AnyObject?)->Void) {
-//        var removes = Array<UIControlBlockTarget>()
-//        controlBlockTargets.forEach { target in
-//            if target.events.contains(evnts) {
-//                
-//                let newEvent = Event(rawValue: (target.events.rawValue & (~target.events.rawValue)))
-//                
-//                removeTarget(target, action: #selector(UIControlBlockTarget.invoke(_:)), for: newEvent)
-//                target.events = newEvent
-//                addTarget(target, action: #selector(UIControlBlockTarget.invoke(_:)), for: newEvent)
-//                
-//                removeTarget(target, action: #selector(UIControlBlockTarget.invoke(_:)), for: newEvent)
-//                removes.append(target)
-//            }
-//        }
-//    }
-//}
-//
+class ControlProxy: NSObject {
+    typealias Callback = (JMControl) -> Void
+    
+    let selector: Selector = #selector(ControlProxy.eventHandler(_:))
+    var callback: Callback?
+    weak var control: JMControl?
+    let controlEvents: UIControl.Event
+    
+    init(control: JMControl, events: UIControl.Event, callback: @escaping Callback) {
+        self.control = control
+        self.controlEvents = events
+        self.callback = callback
+        super.init()
+        control.addTarget(self, action: selector, for: events)
+        let method = self.method(for: selector)
+        if method == nil { fatalError("Can't find method") }
+    }
+    
+    @objc func eventHandler(_ sender: JMControl!) {
+        if let callback = self.callback, let control = self.control {
+            callback(control)
+        }
+    }
+    
+    deinit {
+        self.control?.removeTarget(self, action: self.selector, for: self.controlEvents)
+        self.callback = nil
+        print("⚠️⚠️⚠️ControlTarget释放掉了")
+    }
+}
+
+extension JMBaseObj where Base: UIControl {
+    private func addControlEvent(_ events: UIControl.Event, callback: @escaping (JMControl)->Void) -> ControlProxy {
+        return ControlProxy(control: self.base, events: events) { control in
+            callback(control)
+        }
+    }
+
+    /// 按钮添加block响应
+    public func jmControlAction(_ event: UIControl.Event, action: @escaping (JMControl)->Void) {
+        let target = addControlEvent(event, callback: action)
+        objc_setAssociatedObject(self.base, jmIdentifier(target), target, .OBJC_ASSOCIATION_RETAIN)
+    }
+}
+
+// MARK: -- 为UIButton添加便利方法 ---
+extension JMBaseObj where Base: UIButton {
+    /// 按钮添加block响应
+    public func addAction(event: UIControl.Event = .touchUpInside, action: @escaping (JMControl)->Void) {
+        jmControlAction(event, action: action)
+    }
+}
+
+extension JMBaseObj where Base: UIImageView {
+    
+}
+
+// 兼容以前的版本
+extension UIButton {
+    /// 按钮添加block响应
+    public func jmAddAction(event: UIControl.Event = .touchUpInside, action: @escaping (JMControl)->Void) {
+        self.jm.jmControlAction(event, action: action)
+    }
+}

@@ -1,0 +1,50 @@
+//
+//  JMPresentTransitionAnimated.swift
+//  ZJMKit
+//
+//  Created by JunMing on 2020/12/30.
+//
+
+import UIKit
+
+class JMPresentTransitionAnimated: NSObject, UIViewControllerAnimatedTransitioning {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return 0.3
+    }
+    
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        let fromViewController = transitionContext.viewController(forKey: .from)
+        let toViewController = transitionContext.viewController(forKey: .to)
+        
+        let containerView = transitionContext.containerView
+        var fromView = transitionContext.view(forKey: UITransitionContextViewKey.from)
+        var toView = transitionContext.view(forKey: UITransitionContextViewKey.to)
+        if (fromView == nil) && (toView == nil) {
+            fromView = fromViewController?.view
+            toView = toViewController?.view
+        }
+        let isPresent = toViewController?.presentingViewController == fromViewController
+        let fromFrame = transitionContext.initialFrame(for: fromViewController!)
+        let toFrame = transitionContext.finalFrame(for: toViewController!)
+        
+        if isPresent {
+            fromView?.frame = fromFrame
+            toView?.frame = toFrame.offsetBy(dx: toFrame.size.width, dy: 0)
+            containerView.addSubview(toView!)
+        }
+        
+        let transitionDuration = self.transitionDuration(using: transitionContext)
+        UIView.animate(withDuration: transitionDuration) {
+            if isPresent {
+                toView?.frame = toFrame
+                fromView?.frame = fromFrame.offsetBy(dx: fromFrame.size.width*0.3 * -1, dy: 0)
+            }
+        } completion: { (finish) in
+            let wasCancel = transitionContext.transitionWasCancelled
+            if wasCancel {
+                toView?.removeFromSuperview()
+            }
+            transitionContext.completeTransition(!wasCancel)
+        }
+    }
+}

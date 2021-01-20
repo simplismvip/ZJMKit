@@ -9,13 +9,6 @@ import UIKit
 
 public typealias jmNotigyBlock = (_ info: MsgObjc?) -> Void
 
-private final class JMWeakBox<T: NSObject> {
-    weak var weakObjc: T?
-    init(_ objc: T) {
-        weakObjc = objc
-    }
-}
-
 open class JMNotify: NSObject {
     private let lock = NSRecursiveLock()
     private var notifyDic = [String: [JMWeakBox]]()
