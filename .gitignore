@@ -53,7 +53,7 @@ Carthage/Build
 # Note: if you ignore the Pods directory, make sure to uncomment
 # `pod install` in .travis.yml
 #
-# Pods/
+Pods/
 =======
 
 ## Obj-C/Swift specific
@@ -63,6 +63,7 @@ Carthage/Build
 *.ipa
 *.dSYM.zip
 *.dSYM
+*.swiftlint.yml
 
 ## Playgrounds
 timeline.xctimeline
