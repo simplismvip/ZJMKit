@@ -9,6 +9,7 @@ import Foundation
 
 public typealias MsgObjc = AnyObject
 public typealias MsgBlock = (MsgObjc?) -> MsgObjc?
+public typealias MsgCallBack = (MsgObjc?) -> Void
 public typealias SetRouterBlock = (NSObject?, JMRouter?) -> Void
 public typealias MsgPriority = NSInteger
 
@@ -28,6 +29,17 @@ open class JMRouter: NSObject {
                 if let block = obj.weakObjc?.msgDictM[msgName] {
                     let _ = block(info)
                 }
+            }
+        }
+        lock.unlock()
+    }
+    
+    fileprivate func sendMsg(msgName: String, info: MsgObjc?, callback: @escaping MsgCallBack) {
+        guard let originArr = msgNameObjsDictM[msgName] else { return }
+        lock.lock()
+        for obj in originArr {
+            if let router = obj.weakObjc?.msgRouter, router.isEqual(self) {
+                callback(obj.weakObjc?.msgDictM[msgName]?(info))
             }
         }
         lock.unlock()
@@ -91,6 +103,16 @@ public extension NSObject {
     func jmSendMsg(msgName: String, info: MsgObjc?) {
         if msgPause { return }
         msgRouter?.sendMsg(msgName: msgName, info: info)
+    }
+    
+    /// 发送消息
+    /// - Parameters:
+    ///   - mgsName: 消息名称
+    ///   - withInfo: 发送的参数
+    ///   - callback: 回调参数
+    func jmSendMsg(msgName: String, info: MsgObjc?, callback: @escaping MsgCallBack) {
+        if msgPause { return }
+        msgRouter?.sendMsg(msgName: msgName, info: info, callback: callback)
     }
     
     /// 注册消息

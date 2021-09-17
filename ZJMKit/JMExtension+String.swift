@@ -35,12 +35,12 @@ extension String {
 //    }
     
     /// 获取字符串size
-    public func jmSizeWithFont(_ font:UIFont) -> CGSize {
+    public func jmSizeWithFont(_ font: UIFont) -> CGSize {
         return jmSizeWithFont(font, CGFloat(MAXFLOAT))
     }
     
     /// 时间戳字符串格式化
-    public func jmFormatTspString(_ format:String = "yyyy-MM-dd HH:mm:ss") -> String? {
+    public func jmFormatTspString(_ format: String = "yyyy-MM-dd HH:mm:ss") -> String? {
         // 1578039791.520024
         if let time = Double(self) {
             let date = Date(timeIntervalSince1970: time)
@@ -68,7 +68,7 @@ extension String {
     }
     
     /// 调整字符串间距
-    public func jmAttribute(_ font:UIFont, alignment:NSTextAlignment = .left, space:CGFloat = 4) -> NSMutableAttributedString {
+    public func jmAttribute(_ font: UIFont, alignment:NSTextAlignment = .left, space:CGFloat = 4) -> NSMutableAttributedString {
         let paraStyle = NSMutableParagraphStyle()
         paraStyle.lineBreakMode = .byCharWrapping;
         paraStyle.alignment = alignment;

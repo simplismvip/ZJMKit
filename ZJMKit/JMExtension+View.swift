@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIView {
-    open var jmX:CGFloat {
+    open var jmX: CGFloat {
         get { return self.frame.origin.x }
         set (newX) {
             var frame = self.frame
@@ -17,7 +17,7 @@ extension UIView {
         }
     }
     
-    open var jmY:CGFloat {
+    open var jmY: CGFloat {
         get { return self.frame.origin.y; }
         set (newY) {
             var frame = self.frame
@@ -26,7 +26,7 @@ extension UIView {
         }
     };
     
-    open var jmWidth:CGFloat {
+    open var jmWidth: CGFloat {
         get { return self.frame.size.width; }
         set (newWidth) {
             var frame = self.frame
@@ -36,7 +36,7 @@ extension UIView {
         
     };
     
-    open var jmHeight:CGFloat {
+    open var jmHeight: CGFloat {
         get { return self.frame.size.height; }
         set (newHeight) {
             var frame = self.frame
@@ -45,7 +45,7 @@ extension UIView {
         }
     };
     
-    open var jmSize:CGSize {
+    open var jmSize: CGSize {
         get { return self.frame.size; }
         set (newSize) {
             var frame = self.frame
@@ -54,7 +54,7 @@ extension UIView {
         }
     };
     
-    open var jmOrigin:CGPoint {
+    open var jmOrigin: CGPoint {
         get { return self.frame.origin; }
         set (newOrigin) {
             var frame = self.frame
@@ -63,7 +63,7 @@ extension UIView {
         }
     };
     
-    open var jmCenterX:CGFloat {
+    open var jmCenterX: CGFloat {
         get { return self.center.x; }
         set (newCenterX) {
             var center = self.center
@@ -72,7 +72,7 @@ extension UIView {
         }
     };
     
-    open var jmCenterY:CGFloat {
+    open var jmCenterY: CGFloat {
         get { return self.center.y; }
         set (newCenterY) {
             var center = self.center
@@ -81,7 +81,7 @@ extension UIView {
         }
     };
     
-    open var jmMaxX:CGFloat {
+    open var jmMaxX: CGFloat {
         get { return self.jmX+self.jmWidth; }
         set (newMaxX) {
             var temp = self.frame
@@ -90,7 +90,7 @@ extension UIView {
         }
     };
     
-    open var jmMaxY:CGFloat {
+    open var jmMaxY: CGFloat {
         get { return self.jmY+self.jmHeight; }
         set (newMaxY) {
             var temp = self.frame
@@ -105,19 +105,23 @@ extension UIView {
     /// View截图
     open func jmScreenCapture() -> UIImage? {
         let scale = UIScreen.main.scale
-        let width = bounds.size.width*scale
-        let height = bounds.size.height*scale
+        let width = bounds.size.width * scale
+        let height = bounds.size.height * scale
         
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
-        let ctx = UIGraphicsGetCurrentContext()
-        layer.render(in: ctx!)
+        if let ctx = UIGraphicsGetCurrentContext() {
+            layer.render(in: ctx)
+        }
         
-        let inImageRef = UIGraphicsGetImageFromCurrentImageContext()?.cgImage
-        guard let outImageRef = inImageRef?.cropping(to:CGRect(x: 0, y: 0, width: width, height: height)) else {
+        guard let inImageRef = UIGraphicsGetImageFromCurrentImageContext()?.cgImage else {
             return nil
         }
         
-        let nImage = UIImage(cgImage:outImageRef)
+        guard let outImageRef = inImageRef.cropping(to: CGRect.Rect(width, height)) else {
+            return nil
+        }
+        
+        let nImage = UIImage(cgImage: outImageRef)
         UIGraphicsEndImageContext()
         return nImage
     }

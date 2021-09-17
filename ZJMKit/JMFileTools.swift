@@ -102,8 +102,8 @@ open class JMFileTools {
     }
     
     /// 返回值有转换，返回值是字符串
-    open class func jmGetFilesBytesByPath(_ path:String) ->String {
-        var sumSize:NSInteger = 0
+    open class func jmGetFilesBytesByPath(_ path: String) -> String {
+        var sumSize: NSInteger = 0
         let isDirectory = unsafeBitCast(false, to: UnsafeMutablePointer<ObjCBool>.self)
         if FileManager.default.fileExists(atPath: path, isDirectory: isDirectory) {
             sumSize = NSInteger(jmGetSize(path))

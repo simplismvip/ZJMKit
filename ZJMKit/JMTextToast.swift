@@ -97,17 +97,23 @@ open class JMTextToast: NSObject {
     
     /// 展示Toast，设置时间
     open func jmShowString(text:String, seconds:TimeInterval) {
-        jmShowString(text: text, seconds: seconds, onView: nil, offset: CGPoint(x: 0, y: 0))
+        DispatchQueue.main.async {
+            self.jmShowString(text: text, seconds: seconds, onView: nil, offset: CGPoint(x: 0, y: 0))
+        }
     }
     
     /// 展示Toast，默认时间1秒钟
     open func jmShowString(text:String, onview:UIView) {
-        jmShowString(text: text, seconds: 1, onView: onview, offset: CGPoint(x: 0, y: 0))
+        DispatchQueue.main.async {
+            self.jmShowString(text: text, seconds: 1, onView: onview, offset: CGPoint(x: 0, y: 0))
+        }
     }
     
     /// 展示Toast
     open func jmShowString(text:String, seconds:TimeInterval, offset:CGPoint) {
-        jmShowString(text: text, seconds: seconds, onView: nil, offset: offset)
+        DispatchQueue.main.async {
+            self.jmShowString(text: text, seconds: seconds, onView: nil, offset: offset)
+        }
     }
     
     func dismissAllString(){

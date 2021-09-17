@@ -70,16 +70,16 @@ extension UIView {
         runBlock(Key: &JMEventStore.event_single_tap)
     }
     
-    private func addTapGestureRecognizerWithTaps(taps:Int,touches:Int,select:Selector?)->UITapGestureRecognizer {
+    private func addTapGestureRecognizerWithTaps(taps: Int, touches: Int,select: Selector?) -> UITapGestureRecognizer {
         let tapgesture = UITapGestureRecognizer(target: self, action: select)
-        tapgesture.delegate = (self as! UIGestureRecognizerDelegate)
+        tapgesture.delegate = (self as? UIGestureRecognizerDelegate)
         tapgesture.numberOfTouchesRequired = taps
         tapgesture.numberOfTapsRequired = touches
         addGestureRecognizer(tapgesture)
         return tapgesture
     }
     
-    private func removeTapGestureRecognizerWithTaps(taps:Int,touches:Int) {
+    private func removeTapGestureRecognizerWithTaps(taps: Int, touches: Int) {
         gestureRecognizers?.forEach({ gesture in
             if gesture .isKind(of: UITapGestureRecognizer.self) {
                 if let tapGesture = gesture as? UITapGestureRecognizer {

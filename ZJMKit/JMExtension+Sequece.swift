@@ -88,6 +88,11 @@ extension Array {
             return running
         }
     }
+    
+    /// 安全索引
+    public subscript (safe index: Int) -> Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
 }
 
 extension Sequence where Element: Hashable {

@@ -9,36 +9,36 @@ import UIKit
 
 open class JMTools {
     /// 获取document路径Url
-    open class func jmDescpath()-> URL {
+    open class func jmDescpath() -> URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
     
     /// 获取document路径
-    open class func jmDocuPath() ->String? {
+    open class func jmDocuPath() -> String? {
         let documentDir = FileManager.SearchPathDirectory.documentDirectory
         let domainMask = FileManager.SearchPathDomainMask.allDomainsMask
         return NSSearchPathForDirectoriesInDomains(documentDir,domainMask, true).first
     }
     
     /// 获取home路径
-    open class func jmHomePath() ->String? {
+    open class func jmHomePath() -> String? {
         return NSHomeDirectory()
     }
     
     /// 获取Cache路径
-    open class func jmCachePath() ->String? {
+    open class func jmCachePath() -> String? {
         let documentDir = FileManager.SearchPathDirectory.cachesDirectory
         let domainMask = FileManager.SearchPathDomainMask.allDomainsMask
         return NSSearchPathForDirectoriesInDomains(documentDir,domainMask, true).first
     }
     
     /// 获取temp路径
-    open class func jmTempPath() ->String? {
+    open class func jmTempPath() -> String? {
         return NSTemporaryDirectory()
     }
     
     /// 判断document文件是否存在
-    open class func jmDocuFileExist(fileName name:String) ->Bool {
+    open class func jmDocuFileExist(fileName name: String) -> Bool {
         if let docuPath = jmDocuPath() {
             let toPath = docuPath+"/"+name
             return FileManager.default.fileExists(atPath: toPath)
@@ -48,7 +48,7 @@ open class JMTools {
     }
     
     /// 字符串编码
-    open class func jmEncodding(bookUrl url:String) ->String? {
+    open class func jmEncodding(bookUrl url: String) -> String? {
         return url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
     }
     
@@ -63,7 +63,7 @@ open class JMTools {
     }
     
     /// 归档对象，需遵循Encodable协议
-    open class func jmEncodeObject<T:Encodable>(_ object:T,archPath:String) {
+    open class func jmEncodeObject<T: Encodable>(_ object: T, archPath: String) {
         DispatchQueue.global().async {
             do {
                 let data = try PropertyListEncoder().encode(object)
@@ -75,7 +75,7 @@ open class JMTools {
     }
     
     /// 解档对象，需遵循Encodable协议
-    open class func jmDecodeObject<T:Codable>(archPath:String,_ complate:@escaping (T?)->()) {
+    open class func jmDecodeObject<T: Codable>(archPath: String, _ complate: @escaping (T?)->()) {
         DispatchQueue.global().async {
             guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: archPath) as? Data else {
                 DispatchQueue.main.async { complate(nil) }
@@ -144,7 +144,7 @@ public class JMUtility {
         return util
     }()
     
-    public func contentSize(textAttri: NSMutableAttributedString, textID:String, maxW: CGFloat, font: UIFont) -> CGSize {
+    public func contentSize(textAttri: NSMutableAttributedString, textID: String, maxW: CGFloat, font: UIFont) -> CGSize {
         if let size = contSize[textID] {
             return size
         }else {

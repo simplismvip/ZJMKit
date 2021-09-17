@@ -35,17 +35,17 @@ extension UIColor {
     }
     
     /// 颜色透明度
-    open func jmComponent(_ alpha:CGFloat ) ->UIColor {
+    open func jmComponent(_ alpha: CGFloat ) -> UIColor {
         return withAlphaComponent(alpha)
     }
     
     /// 字符串生成颜色
-    open class func jmHexColor(_ hexStr:String ) ->UIColor{
+    open class func jmHexColor(_ hexStr: String ) -> UIColor{
         return UIColor(hexString: hexStr)
     }
     
     /// 32位数字生成颜色 0xffff
-    open class func jmRGBAValue(rgbValue:UInt32, alpha:CGFloat) ->UIColor {
+    open class func jmRGBAValue(rgbValue: UInt32, alpha: CGFloat) -> UIColor {
         let red = (rgbValue & 0xFF0000) >> 16
         let green = (rgbValue & 0xFF0000) >> 16
         let blue = (rgbValue & 0xFF0000) >> 16
@@ -53,22 +53,22 @@ extension UIColor {
     }
     
     /// 32位数字生成颜色 0xffff
-    open class func jmRGBValue(_ rgbValue:UInt32) ->UIColor{
+    open class func jmRGBValue(_ rgbValue: UInt32) -> UIColor{
         return UIColor.jmRGBAValue(rgbValue:rgbValue, alpha:1)
     }
     
     /// R、G、B、A生成颜色
-    open class func jmRGBA(_ R:Int, _ G:Int, _ B:Int, _ A:CGFloat) ->UIColor{
+    open class func jmRGBA(_ R: Int, _ G: Int, _ B: Int, _ A: CGFloat) -> UIColor{
         return UIColor(red: CGFloat(Float(R) / 255.0), green: CGFloat(Float(G) / 255.0), blue: CGFloat(Float(B) / 255.0), alpha: A)
     }
     
     /// R、G、B生成颜色
-    open class func jmRGB(_ R:Int, _ G:Int, _ B:Int) ->UIColor{
+    open class func jmRGB(_ R: Int, _ G: Int, _ B: Int) -> UIColor{
         return UIColor.jmRGBA(R,G,B,1)
     }
     
     /// 生成渐变色
-    open class func jmGradientColor(_ gradientStyle:GradientStyle,_ colors:Array<UIColor>,_ frame:CGRect) -> UIColor? {
+    open class func jmGradientColor(_ gradientStyle: GradientStyle,_ colors: Array<UIColor>,_ frame: CGRect) -> UIColor? {
         if let image = UIImage.jmGradientImage(gradientStyle, colors, frame) {
             return UIColor(patternImage: image)
         }
