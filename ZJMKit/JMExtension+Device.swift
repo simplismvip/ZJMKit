@@ -3,6 +3,7 @@
 //  Pods-Snp_Layout
 //
 //  Created by JunMing on 2020/5/21.
+//  Copyright © 2022 JunMing. All rights reserved.
 //
 
 import Foundation

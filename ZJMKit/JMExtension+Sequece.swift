@@ -3,13 +3,14 @@
 //  Pods-ZJMKit_Example
 //
 //  Created by JunMing on 2020/7/2.
+//  Copyright © 2022 JunMing. All rights reserved.
 //
 
 import UIKit
 
 extension Array where Element: Equatable {
     /// 查找某个元素的位置，这个方法是下面index的特殊情况
-    public func index(of element:Element) -> Int? {
+    public func index(of element: Element) -> Int? {
         for idx in self.indices where self[idx] == element {
             return idx
         }
@@ -17,23 +18,16 @@ extension Array where Element: Equatable {
     }
     
     /// 移除元素
-    public mutating func jmRemoveObject<T:Equatable>(_ model:T, inArray:inout [T]) {
-        var findIndex:Int?
-        for (index,item) in inArray.enumerated() {
-            if item == model {
-                findIndex = index
-                break
-            }
+    public mutating func jmRemoveObject(_ element: Element) -> [Element] {
+        if let index = self.index(of: element) {
+            self.remove(at: index)
         }
-        
-        if let index = findIndex {
-            inArray.remove(at: index)
-        }
+        return self
     }
     
     /// 删除元素
-    public mutating func jmReleteObject<T:Equatable>(_ model:T, inArray:inout [T]) {
-        var findIndex:Int?
+    public mutating func jmDeleteObject(_ model: Element, inArray: inout [Element]) {
+        var findIndex: Int?
         for (index,item) in inArray.enumerated() {
             if item == model {
                 findIndex = index

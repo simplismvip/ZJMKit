@@ -3,6 +3,7 @@
 //  Pods-ZJMKit_Example
 //
 //  Created by JunMing on 2020/7/16.
+//  Copyright © 2022 JunMing. All rights reserved.
 //
 // MARK: -- ⚠️⚠️⚠️使用注意，这个分类提供关联对象相互发送消息的能力
 import Foundation

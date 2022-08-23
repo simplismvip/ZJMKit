@@ -3,6 +3,7 @@
 //  FBSnapshotTestCase
 //
 //  Created by JunMing on 2020/7/17.
+//  Copyright © 2022 JunMing. All rights reserved.
 //
 
 import UIKit

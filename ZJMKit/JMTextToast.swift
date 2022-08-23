@@ -3,9 +3,17 @@
 //  Pods-ZJMKit_Example
 //
 //  Created by JunMing on 2020/6/29.
+//  Copyright © 2022 JunMing. All rights reserved.
 //
 
 import UIKit
+
+// Toast
+public struct JMToast {
+    static func toast(_ text: String, second: Int = 1) {
+        JMTextToast.share.jmShowString(text: text, seconds: TimeInterval(second))
+    }
+}
 
 open class JMTextToast: NSObject {
     public static let share:JMTextToast = { return JMTextToast() }()
@@ -13,12 +21,12 @@ open class JMTextToast: NSObject {
     private func jmShowString(text:String,seconds:TimeInterval,onView:UIView?,offset:CGPoint) {
         func addContainerViews(containerView:UIView, backView:UIView) {
             containerView.addSubview(backView)
-            containerView.bringSubview(toFront: backView)
+            containerView.bringSubviewToFront(backView)
             createLable(backView: backView)
             
             if let containerView = UIApplication.shared.keyWindow {
                 containerView.layoutIfNeeded()
-                self.perform(#selector(alertHidden(_:)), with: backView, afterDelay: seconds, inModes: [RunLoopMode.commonModes])
+                self.perform(#selector(alertHidden(_:)), with: backView, afterDelay: seconds, inModes: [RunLoop.Mode.common])
                 let deadLine = DispatchTime.now()+seconds
                 DispatchQueue.main.asyncAfter(deadline: deadLine) {
                     self.alertHidden(backView)
